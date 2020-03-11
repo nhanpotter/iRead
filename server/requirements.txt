@@ -2,3 +2,8 @@ django==2.2
 djangorestframework
 requests
 djoser
+requests_oauthlib
+
+# linting
+pylint
+pylint-django
