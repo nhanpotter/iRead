@@ -25,8 +25,9 @@ SECRET_KEY = '02p)rqdf(*a&ax*#4r7sg-l2b2rn2nc*u9ad&r5dqo5(a1zkm!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', '0.0.0.0']
 
+AUTH_API_URL = 'http://172.21.148.177:7000/auth'
 
 # Application definition
 
@@ -37,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +53,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 ROOT_URLCONF = 'server.urls'
 
@@ -118,3 +136,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}', #TODO
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}', #TODO
+    'ACTIVATION_URL': 'account/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {
+        'current_user': 'account.serializers.ActiveUserSerializer',
+    },
+}
+
+# For Email
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIIL_PORT = 587
+EMAIL_HOST_USER = "iReadCZ2006@gmail.com" 
+EMAIL_HOST_PASSWORD = "readisgood"
