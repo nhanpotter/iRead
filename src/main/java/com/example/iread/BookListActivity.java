@@ -4,8 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.SearchView;
+
+import com.example.iread.HomePage.HomeActivity;
+import com.example.iread.HomePage.l1;
+import com.example.iread.HomePage.n1;
+import com.example.iread.HomePage.u1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +28,52 @@ public class BookListActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookslist);
 
-        // data to populate the RecyclerView with
+        //Data to populate the RecyclerView with
         fillBooksList();
 
-        // set up the RecyclerView
+        //Set up the RecyclerView
         setUpRecycleView();
 
         //SearchView
         setUpSearchView();
+
+        //Bottom navigation
+        ImageButton home = findViewById(R.id.imageButton16_hse);
+        ImageButton lib = findViewById(R.id.imageButton20);
+        ImageButton noti = findViewById(R.id.imageButton21);
+        ImageButton user = findViewById(R.id.imageButton22);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent hse = new Intent(BookListActivity.this, HomeActivity.class);
+                startActivity(hse);
+            }
+        });
+
+        lib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent library = new Intent(BookListActivity.this, l1.class);
+                startActivity(library);
+            }
+        });
+
+        noti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent notifications = new Intent(BookListActivity.this, n1.class);
+                startActivity(notifications);
+            }
+        });
+
+        user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent acct = new Intent(BookListActivity.this, u1.class);
+                startActivity(acct);
+            }
+        });
     }
 
     private void fillBooksList() {
