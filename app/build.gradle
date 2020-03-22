@@ -35,4 +35,7 @@ dependencies {
     implementation files('libs/epublib-core-latest.jar')
     implementation files('libs/slf4j-android-1.6.1-RC1.jar')
     /*implementation "com.folioreader:folioreader:0.5.4"*/
+
+    implementation "androidx.navigation:navigation-fragment:2.3.0-alpha04"
+    implementation "androidx.navigation:navigation-ui:2.3.0-alpha04"
 }

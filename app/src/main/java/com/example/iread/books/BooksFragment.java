@@ -1,32 +1,37 @@
-package com.example.iread.temp.ui.activities;
+package com.example.iread.books;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SearchView;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.SearchView;
-
-import com.example.iread.temp.Book;
-import com.example.iread.temp.ui.adapters.BookListAdapter;
 import com.example.iread.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookListActivity extends AppCompatActivity{
+public class BooksFragment extends Fragment {
 
     BookListAdapter adapter;
     private List<Book> booksList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookslist);
+    public BooksFragment() {
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_books, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         //Data to populate the RecyclerView with
         fillBooksList();
 
@@ -50,19 +55,19 @@ public class BookListActivity extends AppCompatActivity{
         booksList.add(new Book("9Blank"));
         booksList.add(new Book("10Blank"));
         booksList.add(new Book("11Blank"));
-        booksList.add(new Book("12Blank"));
     }
 
     private void setUpRecycleView() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = getView().findViewById(R.id.recyclerView);
         int numberOfColumns = 3;
-        recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-        adapter = new BookListAdapter(this, booksList);
+        recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), numberOfColumns));
+
+        adapter = new BookListAdapter(this.getContext(), booksList);
         recyclerView.setAdapter(adapter);
     }
 
     private void setUpSearchView() {
-        SearchView searchView = findViewById(R.id.searchView2);
+        SearchView searchView = getView().findViewById(R.id.searchView2);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
