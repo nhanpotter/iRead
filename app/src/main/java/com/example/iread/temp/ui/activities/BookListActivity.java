@@ -1,4 +1,4 @@
-package com.example.iread.ui.activities;
+package com.example.iread.temp.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -10,13 +10,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 
-import com.example.iread.Book;
-import com.example.iread.ui.adapters.BookListAdapter;
+import com.example.iread.temp.Book;
+import com.example.iread.temp.ui.adapters.BookListAdapter;
 import com.example.iread.R;
-import com.example.iread.ui.activities.HomePage.HomeActivity;
-import com.example.iread.ui.activities.HomePage.l1;
-import com.example.iread.ui.activities.HomePage.n1;
-import com.example.iread.ui.activities.HomePage.u1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,44 +35,6 @@ public class BookListActivity extends AppCompatActivity{
 
         //SearchView
         setUpSearchView();
-
-        //Bottom navigation
-        ImageButton home = findViewById(R.id.imageButton16_hse);
-        ImageButton lib = findViewById(R.id.imageButton20);
-        ImageButton noti = findViewById(R.id.imageButton21);
-        ImageButton user = findViewById(R.id.imageButton22);
-
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent hse = new Intent(BookListActivity.this, HomeActivity.class);
-                startActivity(hse);
-            }
-        });
-
-        lib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent library = new Intent(BookListActivity.this, l1.class);
-                startActivity(library);
-            }
-        });
-
-        noti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent notifications = new Intent(BookListActivity.this, n1.class);
-                startActivity(notifications);
-            }
-        });
-
-        user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent acct = new Intent(BookListActivity.this, u1.class);
-                startActivity(acct);
-            }
-        });
     }
 
     private void fillBooksList() {

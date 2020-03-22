@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.ReadActivity" />
-        <activity android:name=".ui.activities.HomePage.bk6" />
-        <activity android:name=".ui.activities.HomePage.bk5" />
-        <activity android:name=".ui.activities.HomePage.bk4" />
-        <activity android:name=".ui.activities.HomePage.bk3" />
-        <activity android:name=".ui.activities.HomePage.bk2" />
-        <activity android:name=".ui.activities.HomePage.bk1" />
-        <activity android:name=".ui.activities.HomePage.u1" />
-        <activity android:name=".ui.activities.HomePage.n1" />
-        <activity android:name=".ui.activities.HomePage.l1" />
-        <activity android:name=".ui.activities.HomePage.latest" />
-        <activity android:name=".ui.activities.HomePage.top10" />
-        <activity android:name=".ui.activities.HomePage.HomeActivity">
+        <activity android:name=".temp.ui.activities.ReadActivity" />
+        <activity android:name=".temp.ui.activities.HomePage.bk6" />
+        <activity android:name=".temp.ui.activities.HomePage.bk5" />
+        <activity android:name=".temp.ui.activities.HomePage.bk4" />
+        <activity android:name=".temp.ui.activities.HomePage.bk3" />
+        <activity android:name=".temp.ui.activities.HomePage.bk2" />
+        <activity android:name=".temp.ui.activities.HomePage.bk1" />
+        <activity android:name=".temp.ui.activities.HomePage.u1" />
+        <activity android:name=".temp.ui.activities.HomePage.n1" />
+        <activity android:name=".temp.ui.activities.HomePage.l1" />
+        <activity android:name=".temp.ui.activities.HomePage.latest" />
+        <activity android:name=".temp.ui.activities.HomePage.top10" />
+        <activity android:name=".temp.ui.activities.HomePage.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,9 +29,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.BookListActivity"
+            android:name=".temp.ui.activities.BookListActivity"
             android:label="@string/title_listbooks"
-            android:parentActivityName=".ui.activities.HomePage.HomeActivity"></activity>
+            android:parentActivityName=".temp.ui.activities.HomePage.HomeActivity"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.iread.ui.adapters;
+package com.example.iread.temp.ui.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.iread.Book;
+import com.example.iread.temp.Book;
 import com.example.iread.R;
 
 import java.util.ArrayList;

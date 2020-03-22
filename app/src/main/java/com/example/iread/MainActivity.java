@@ -1,4 +1,4 @@
-package com.example.iread.ui.activities.HomePage;
+package com.example.iread;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.iread.R;
 
-public class bk2 extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bk2);
+        setContentView(R.layout.activity_main);
     }
 }
