@@ -3,4 +3,9 @@
     <string name="title_listbooks">Books</string>
     <string name="search_hint">Search books</string>
     <string name="home_fragment">Home Fragment</string>
+    <string name="login_header">LOGIN</string>
+    <string name="password_hint">Password</string>
+    <string name="sign_up_header">SIGN UP</string>
+    <string name="email_hint_field">Email</string>
+    <string name="google_account">Google Account</string>
 </resources>
