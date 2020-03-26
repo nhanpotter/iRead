@@ -8,7 +8,7 @@ import requests
 # Create your views here.
 
 def account_activate(request, uid, token):
-    url = AUTH_API_URL + '/users/activation/'
+    url = AUTH_API_URL + 'users/activation/'
     kwargs = {
         'uid': uid,
         'token': token,
