@@ -15,7 +15,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @Module
 public class NetworkModule {
-    public static final String baseUrl = "http://172.21.148.177:9000";
+    public static final String baseUrl = "https://iread-server.herokuapp.com";
 
     @Singleton
     @Provides

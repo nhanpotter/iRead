@@ -6,11 +6,15 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.iread.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Arrays;
@@ -26,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        Fragment hostFragment = getSupportFragmentManager().findFragmentById(R.id.navHostFragment);
+        navController = ((NavHostFragment) hostFragment).getNavController();
 
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller,
@@ -43,5 +48,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment hostFragment = getSupportFragmentManager().findFragmentById(R.id.navHostFragment);
+        if (hostFragment instanceof HomeFragment) finish();
+        else super.onBackPressed();
     }
 }

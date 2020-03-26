@@ -50,7 +50,6 @@ public class LoginViewModel extends ViewModel {
                     mutableLoggedIn.setValue(true);
                 }, error -> {
                     mutableError.setValue("Unable to login");
-                    throw(error);
                 }));
     }
 

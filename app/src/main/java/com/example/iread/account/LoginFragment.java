@@ -51,8 +51,9 @@ public class LoginFragment extends Fragment {
                 loginViewModel.login(username, password);
             }
         });
-
+        Log.d(LOG_TAG, rootView.toString());
         if (loginViewModel.isLoggedIn()) {
+            Log.d(LOG_TAG, rootView.toString());
             Navigation.findNavController(rootView).navigate(R.id.homeFragment);
         }
 
@@ -60,7 +61,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onChanged(Boolean aBoolean) {
-                if (aBoolean == true)
+                if (aBoolean)
                     Navigation.findNavController(rootView).navigate(R.id.homeFragment);
             }
         });
