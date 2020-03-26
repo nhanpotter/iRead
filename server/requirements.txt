@@ -3,6 +3,7 @@ djangorestframework
 requests
 djoser
 requests_oauthlib
+lxml
 
 # linting
 pylint

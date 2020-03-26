@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*', '0.0.0.0']
 
-AUTH_API_URL = 'http://172.21.148.177:7000/auth'
+AUTH_API_URL = 'http://172.21.148.177:9000/auth'
 
 # Application definition
 
@@ -56,8 +56,6 @@ MIDDLEWARE = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
@@ -124,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Singapore'
 
 USE_I18N = True
 
@@ -146,6 +144,7 @@ DJOSER = {
     'SERIALIZERS': {
         'current_user': 'account.serializers.ActiveUserSerializer',
     },
+    'USER_CREATE_PASSWORD_RETYPE': True
 }
 
 # For Email
