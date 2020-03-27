@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".temp.ui.activities.BookDetailsActivity">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/DownldfloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-5dp"
+        android:clickable="true"
+        android:scaleX="0.75"
+        android:scaleY="0.75"
+        app:backgroundTint="#12D6C4"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/rectangleTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/stat_sys_download_done" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="247dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="36dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="3.5"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:stepSize="0.1"
+        app:layout_constraintBottom_toTopOf="@+id/roundRectangleTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewRatings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
+        android:layout_marginLeft="98dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        android:text="Ratings"
+        android:textColor="#FA000000"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@+id/textViewDescript"
+        app:layout_constraintEnd_toStartOf="@+id/ratingBar"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectangleTextView"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/AddRateButton"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="12dp"
+        android:background="#E917D1BB"
+        android:text="+"
+        android:textColor="#FBFBFB"
+        android:textSize="20dp"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+        app:layout_constraintEnd_toEndOf="@+id/ratingBar"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+
+    <TextView
+        android:id="@+id/textViewComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="18dp"
+        android:text="Comments"
+        android:textColor="#FA000000"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@+id/CommentsScrollBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roundRectangleTextView"
+        app:layout_constraintVertical_bias="0.00999999" />
+
+    <ScrollView
+        android:id="@+id/CommentsScrollBar"
+        android:layout_width="316dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:background="#80979494"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textViewDescript"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="2dp"
+        android:text="Description"
+        android:textColor="#FA000000"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@+id/roundRectangleTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+    <EditText
+        android:id="@+id/roundRectangleTextView"
+        android:layout_width="314dp"
+        android:layout_height="66dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="5dip"
+        app:layout_constraintBottom_toTopOf="@+id/CommentsScrollBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.87" />
+
+    <EditText
+        android:id="@+id/rectangleTextView"
+        android:layout_width="189dp"
+        android:layout_height="217dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rectangle"
+        android:padding="5dip"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/AddCommButton"
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="4dp"
+        android:background="#E917D1BB"
+        android:text="+"
+        android:textColor="#FBFBFB"
+        android:textSize="20dp"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@+id/CommentsScrollBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewComments"
+        app:layout_constraintTop_toBottomOf="@+id/roundRectangleTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

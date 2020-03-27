@@ -1,15 +1,22 @@
 package com.example.iread.books;
 
+<<<<<<< HEAD
 import android.util.Log;
 
+=======
+>>>>>>> Connect and Share data between BookList and BookDetail
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+=======
+import java.util.List;
+>>>>>>> Connect and Share data between BookList and BookDetail
 
 import javax.inject.Inject;
 
@@ -30,15 +37,23 @@ public class BooksViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<Boolean> mutableProgress = new MutableLiveData<>();
     public LiveData<Boolean> progress = mutableProgress;
+<<<<<<< HEAD
     private MutableLiveData<List<Book>> mutableBooksListFull = new MutableLiveData<>();
+=======
+>>>>>>> Connect and Share data between BookList and BookDetail
     private MutableLiveData<List<Book>> mutableBooksList = new MutableLiveData<>();
     public LiveData<List<Book>> booksList = mutableBooksList;
     private MutableLiveData<String> mutableError = new MutableLiveData<>();
     public LiveData<String> error = mutableError;
 
     public void getBooksList() {
+<<<<<<< HEAD
         Single<List<Book>> booksListObservable = bookRepository.getBooksList();
         compositeDisposable.add(booksListObservable
+=======
+        Single<List<Book>> bookListObservable = bookRepository.getBooksList();
+        compositeDisposable.add(bookListObservable
+>>>>>>> Connect and Share data between BookList and BookDetail
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> {
@@ -48,7 +63,10 @@ public class BooksViewModel extends ViewModel {
                     mutableProgress.setValue(false);
                 })
                 .subscribe(data -> {
+<<<<<<< HEAD
                     mutableBooksListFull.setValue(data);
+=======
+>>>>>>> Connect and Share data between BookList and BookDetail
                     mutableBooksList.setValue(data);
                 }, error -> {
                     mutableError.setValue("Unable to get book list");
@@ -57,6 +75,7 @@ public class BooksViewModel extends ViewModel {
         );
     }
 
+<<<<<<< HEAD
     public void manipulateBooksList(
             SortingMenuOptions sortingMenuOptions, GenreMenuOptions genreMenuOptions, RatingMenuOptions ratingMenuOptions) {
         mutableProgress.setValue(true);
@@ -119,11 +138,14 @@ public class BooksViewModel extends ViewModel {
         mutableProgress.setValue(false);
     }
 
+=======
+>>>>>>> Connect and Share data between BookList and BookDetail
     @Override
     protected void onCleared() {
         super.onCleared();
         compositeDisposable.clear();
     }
+<<<<<<< HEAD
 
 }
 
@@ -169,3 +191,6 @@ class TimeDescendingComparator implements Comparator<Book>
         }
     }
 }
+=======
+}
+>>>>>>> Connect and Share data between BookList and BookDetail

@@ -4,7 +4,10 @@ import com.example.iread.account.AuthService;
 import com.example.iread.account.LoginService;
 import com.example.iread.account.RequestAuthenticator;
 import com.example.iread.books.BookService;
+<<<<<<< HEAD
 import com.example.iread.books.FeedbackService;
+=======
+>>>>>>> Connect and Share data between BookList and BookDetail
 
 import javax.inject.Singleton;
 
@@ -74,11 +77,14 @@ public class NetworkModule {
     @Singleton
     public BookService provideBookService(RequestAuthenticator requestAuthenticator) {
         return getRetrofit(requestAuthenticator).create(BookService.class);
+<<<<<<< HEAD
     }
 
     @Provides
     @Singleton
     public FeedbackService provideFeedbackService(RequestAuthenticator requestAuthenticator) {
         return getRetrofit(requestAuthenticator).create(FeedbackService.class);
+=======
+>>>>>>> Connect and Share data between BookList and BookDetail
     }
 }

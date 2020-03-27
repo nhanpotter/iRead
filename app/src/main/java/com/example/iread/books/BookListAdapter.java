@@ -10,7 +10,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iread.R;
@@ -26,13 +25,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public BookListAdapter(Context context, List<Book> booksList, ItemClickListener mClickListener) {
+    public BookListAdapter(Context context, List<Book> booksList) {
         this.mInflater = LayoutInflater.from(context);
 
         this.booksList = booksList;
         this.booksListFull = new ArrayList<>(booksList);
-
-        this.mClickListener = mClickListener;
     }
 
     public void setBooksList(List<Book> booksList) {
@@ -99,18 +96,18 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
-        ImageButton thumbnail;
+        ImageButton myImageButton;
 
         ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textView2);
-            thumbnail = itemView.findViewById(R.id.imageButton4);
-            thumbnail.setOnClickListener(this);
+            myImageButton = itemView.findViewById(R.id.imageButton4);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 

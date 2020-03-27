@@ -9,23 +9,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-<<<<<<< HEAD
+
 import androidx.lifecycle.Observer;
-=======
-<<<<<<< Updated upstream
-=======
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+
+
 import androidx.navigation.Navigation;
->>>>>>> Stashed changes
->>>>>>> Connect and share data between BooksList and BookDetails
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,7 +27,6 @@ import com.example.iread.R;
 import com.example.iread.utils.CustomProgressDialog;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -160,7 +152,6 @@ public class BooksFragment extends Fragment {
         RecyclerView recyclerView = getView().findViewById(R.id.recyclerView);
         int numberOfColumns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), numberOfColumns));
-
 
         BookListAdapter.ItemClickListener listener = ((view, position) -> {
             Bundle bundle = new Bundle();
