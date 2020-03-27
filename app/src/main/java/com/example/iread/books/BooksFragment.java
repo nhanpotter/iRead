@@ -9,11 +9,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+<<<<<<< HEAD
 import androidx.lifecycle.Observer;
+=======
+<<<<<<< Updated upstream
+=======
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+>>>>>>> Stashed changes
+>>>>>>> Connect and share data between BooksList and BookDetails
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -149,8 +161,19 @@ public class BooksFragment extends Fragment {
         int numberOfColumns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), numberOfColumns));
 
+
+        BookListAdapter.ItemClickListener listener = ((view, position) -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("id", booksList.get(position).getId());
+//            bundle.putString("title", booksList.get(position).getBookTitle());
+//            bundle.putString("author", booksList.get(position).getAuthorName());
+//            bundle.putString("summary", booksList.get(position).getSummary());
+//            Toast.makeText(getContext(), "Book ID " + booksList.get(position).getId(), Toast.LENGTH_SHORT).show();
+            Navigation.findNavController(view).navigate(R.id.bookDetailsFragment, bundle);
+        });
+
         if (adapter == null)
-            adapter = new BookListAdapter(this.getContext(), booksList);
+            adapter = new BookListAdapter(this.getContext(), booksList, listener);
         else
             adapter.setBooksList(booksList);
 

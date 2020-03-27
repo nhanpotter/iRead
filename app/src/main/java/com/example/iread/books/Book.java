@@ -25,7 +25,20 @@ public class Book {
 
     public Genre genre;
 
+
+    public int getId() {
+        return id;
+    }
     public String getBookTitle() {
         return bookTitle;
     }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
 }
