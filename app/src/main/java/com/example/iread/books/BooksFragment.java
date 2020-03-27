@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 
 import androidx.lifecycle.Observer;
 
-
 import androidx.navigation.Navigation;
 
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -42,7 +41,7 @@ public class BooksFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        ((MyApplication)MyApplication.applicationContext).appComponent.inject(this);
+        ((MyApplication) MyApplication.applicationContext).appComponent.inject(this);
     }
 
     @Override

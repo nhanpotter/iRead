@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iread.R;
 import com.example.iread.books.Book;
-import com.example.iread.books.SharedViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.ViewHolder> {
@@ -49,7 +47,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.View
     // binds the data to the TextView in each cell
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText("Title: " + recommendedList.get(position).getTitle());
+        holder.title.setText(recommendedList.get(position).getBookTitle());
     }
 
     // total number of cells

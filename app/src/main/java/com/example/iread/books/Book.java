@@ -25,7 +25,6 @@ public class Book {
 
     public Genre genre;
 
-
     public int getId() {
         return id;
     }

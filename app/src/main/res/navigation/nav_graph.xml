@@ -19,7 +19,11 @@
     <fragment
         android:id="@+id/booksFragment"
         android:name="com.example.iread.books.BooksFragment"
-        android:label="BooksFragment" />
+        android:label="BooksFragment" >
+        <action
+            android:id="@+id/action_booksFragment_to_bookDetailsFragment"
+            app:destination="@id/bookDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.example.iread.account.AccountFragment"
@@ -32,4 +36,9 @@
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/bookDetailsFragment"
+        android:name="com.example.iread.books.BookDetailsFragment"
+        android:label="fragment_bookdetails"
+        tools:layout="@layout/fragment_bookdetails" />
 </navigation>

@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.iread.MyApplication;
 import com.example.iread.R;
@@ -38,7 +37,7 @@ public class BookDetailsFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        ((MyApplication)MyApplication.applicationContext).appComponent.inject(this);
+        ((MyApplication) MyApplication.applicationContext).appComponent.inject(this);
     }
 
     @Override
