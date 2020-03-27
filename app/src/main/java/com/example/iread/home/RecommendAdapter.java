@@ -20,7 +20,6 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.View
     private Context mContext;
     private List<Book> recommendedList;
     private LayoutInflater mInflater;
-    private SharedViewModel model;
 
     // data is passed into the constructor
     public RecommendAdapter(Context context, List<Book> recommendedList) {
