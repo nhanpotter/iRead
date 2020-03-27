@@ -3,6 +3,7 @@ package com.example.iread.di.module;
 import com.example.iread.account.LoginService;
 import com.example.iread.account.RequestAuthenticator;
 import com.example.iread.books.BookService;
+import com.example.iread.books.FeedbackService;
 
 import javax.inject.Singleton;
 
@@ -48,5 +49,11 @@ public class NetworkModule {
     @Singleton
     public BookService provideBookService(RequestAuthenticator requestAuthenticator) {
         return getRetrofit(requestAuthenticator).create(BookService.class);
+    }
+
+    @Provides
+    @Singleton
+    public FeedbackService provideFeedbackService(RequestAuthenticator requestAuthenticator) {
+        return getRetrofit(requestAuthenticator).create(FeedbackService.class);
     }
 }
