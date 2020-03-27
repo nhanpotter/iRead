@@ -84,9 +84,9 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        if (loginViewModel.isLoggedIn()) {
-//            Navigation.findNavController(rootView).navigate(R.id.homeFragment);
-//        }
+        if (loginViewModel.isLoggedIn()) {
+            Navigation.findNavController(rootView).navigate(R.id.homeFragment);
+        }
     }
 
     private void popBackStack() {

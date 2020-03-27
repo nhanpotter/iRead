@@ -2,7 +2,11 @@ package com.example.iread.books;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
@@ -26,6 +30,7 @@ import javax.inject.Inject;
 public class BooksFragment extends Fragment {
     private View rootView;
     BookListAdapter adapter;
+    Menu menu;
     @Inject
     BooksViewModel booksViewModel;
 
@@ -40,6 +45,7 @@ public class BooksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_books, container, false);
+        setHasOptionsMenu(true);
         CustomProgressDialog dialog = new CustomProgressDialog(getContext());
 
         booksViewModel.getBooksList();
@@ -78,13 +84,76 @@ public class BooksFragment extends Fragment {
         setUpSearchView();
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        Log.d("Nice", "Hello");
+        inflater.inflate(R.menu.books_menu, menu);
+        this.menu = menu;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if ((item == menu.findItem(R.id.sorting_menu)) || (item == menu.findItem(R.id.genre_menu))
+            || (item == menu.findItem(R.id.rating_menu))) {
+            return super.onOptionsItemSelected(item);
+        }
+        item.setChecked(true);
+        SortingMenuOptions sortingMenuOptions = null;
+        GenreMenuOptions genreMenuOptions = null;
+        RatingMenuOptions ratingMenuOptions = null;
+
+        if (menu.findItem(R.id.name_ascending).isChecked()) {
+            sortingMenuOptions = SortingMenuOptions.NAME_ASCENDING;
+        } else if (menu.findItem(R.id.name_descending).isChecked()) {
+            sortingMenuOptions = SortingMenuOptions.NAME_DESCENDING;
+        } else if (menu.findItem(R.id.time_ascending).isChecked()) {
+            sortingMenuOptions = SortingMenuOptions.TIME_ASCENDING;
+        } else if (menu.findItem(R.id.time_descending).isChecked()) {
+            sortingMenuOptions = SortingMenuOptions.TIME_DESCENDING;
+        }
+
+        if (menu.findItem(R.id.fantasy_menu).isChecked()) {
+            genreMenuOptions = GenreMenuOptions.FANTASY;
+        } else if (menu.findItem(R.id.adventure_menu).isChecked()) {
+            genreMenuOptions = GenreMenuOptions.ADVENTURE;
+        } else if (menu.findItem(R.id.romance_menu).isChecked()) {
+            genreMenuOptions = GenreMenuOptions.ROMANCE;
+        } else if (menu.findItem(R.id.mystery_menu).isChecked()) {
+            genreMenuOptions = GenreMenuOptions.MYSTERY;
+        } else if (menu.findItem(R.id.horror_menu).isChecked()) {
+            genreMenuOptions = GenreMenuOptions.HORROR;
+        } else if (menu.findItem(R.id.fiction_menu).isChecked()) {
+            genreMenuOptions = GenreMenuOptions.FICTION;
+        } else if (menu.findItem(R.id.humor_menu).isChecked()) {
+            genreMenuOptions = GenreMenuOptions.HUMOR;
+        }
+
+        if (menu.findItem(R.id.star_0_1).isChecked()) {
+            ratingMenuOptions = RatingMenuOptions.STAR_0_1;
+        } else if (menu.findItem(R.id.star_1_2).isChecked()) {
+            ratingMenuOptions = RatingMenuOptions.STAR_1_2;
+        } else if (menu.findItem(R.id.star_2_3).isChecked()) {
+            ratingMenuOptions = RatingMenuOptions.STAR_2_3;
+        } else if (menu.findItem(R.id.star_3_4).isChecked()) {
+            ratingMenuOptions = RatingMenuOptions.STAR_3_4;
+        } else if (menu.findItem(R.id.star_4_5).isChecked()) {
+            ratingMenuOptions = RatingMenuOptions.STAR_4_5;
+        }
+
+        booksViewModel.manipulateBooksList(sortingMenuOptions, genreMenuOptions, ratingMenuOptions);
+        return true;
+    }
 
     private void setUpRecycleView(List<Book> booksList) {
         RecyclerView recyclerView = getView().findViewById(R.id.recyclerView);
         int numberOfColumns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), numberOfColumns));
 
-        adapter = new BookListAdapter(this.getContext(), booksList);
+        if (adapter == null)
+            adapter = new BookListAdapter(this.getContext(), booksList);
+        else
+            adapter.setBooksList(booksList);
+
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

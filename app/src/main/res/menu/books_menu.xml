@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sorting_menu"
+        android:title="@string/sorting_menu" >
+        <menu >
+            <group
+                android:id="@+id/sort_group"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/name_ascending"
+                    android:checked="true"
+                    android:title="@string/name_ascending"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/name_descending"
+                    android:checked="false"
+                    android:title="@string/name_descending"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/time_ascending"
+                    android:title="@string/time_ascending"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/time_descending"
+                    android:title="@string/time_descending"
+                    app:showAsAction="never" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/genre_menu"
+        android:title="@string/genre">
+        <menu>
+            <group
+                android:id="@+id/genre_group"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/all_genre_menu"
+                    android:checked="true"
+                    android:title="@string/all_genre" />
+                <item
+                    android:id="@+id/fantasy_menu"
+                    android:title="@string/fantasy" />
+                <item
+                    android:id="@+id/adventure_menu"
+                    android:title="@string/adventure" />
+                <item
+                    android:id="@+id/romance_menu"
+                    android:title="@string/romance" />
+                <item
+                    android:id="@+id/mystery_menu"
+                    android:title="@string/mystery" />
+                <item
+                    android:id="@+id/horror_menu"
+                    android:title="@string/horror" />
+                <item
+                    android:id="@+id/fiction_menu"
+                    android:title="@string/fiction" />
+                <item
+                    android:id="@+id/humor_menu"
+                    android:title="@string/humor" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/rating_menu"
+        android:title="@string/rating" >
+        <menu >
+            <group
+                android:id="@+id/rating_group"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/all_rating_menu"
+                    android:checked="true"
+                    android:title="@string/all_rating" />
+                <item
+                    android:id="@+id/star_0_1"
+                    android:title="@string/_0_1_star" />
+                <item
+                    android:id="@+id/star_1_2"
+                    android:title="@string/_1_2_star" />
+                <item
+                    android:id="@+id/star_2_3"
+                    android:title="@string/_2_3_star" />
+                <item
+                    android:id="@+id/star_3_4"
+                    android:title="@string/_3_4_star" />
+                <item
+                    android:id="@+id/star_4_5"
+                    android:title="@string/_4_5_star" />
+            </group>
+        </menu>
+    </item>
+</menu>

@@ -32,6 +32,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         this.booksListFull = new ArrayList<>(booksList);
     }
 
+    public void setBooksList(List<Book> booksList) {
+        this.booksList = booksList;
+        this.booksListFull = new ArrayList<>(booksList);
+    }
+
     // inflates the cell layout from xml when needed
     @Override
     @NonNull
