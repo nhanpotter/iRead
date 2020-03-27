@@ -1,5 +1,6 @@
 package com.example.iread.di.module;
 
+import com.example.iread.account.AuthService;
 import com.example.iread.account.LoginService;
 import com.example.iread.account.RequestAuthenticator;
 import com.example.iread.books.BookService;
@@ -41,8 +42,32 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public LoginService provideLoginService(RequestAuthenticator requestAuthenticator) {
-        return getRetrofit(requestAuthenticator).create(LoginService.class);
+    public Retrofit getRetrofitWithoutInterceptor() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build();
+
+        return new Retrofit.Builder()
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .addConverterFactory(JacksonConverterFactory.create())
+                .baseUrl(baseUrl)
+                .client(client)
+                .build();
+    }
+
+    @Provides
+    @Singleton
+    public LoginService provideLoginService() {
+        return getRetrofitWithoutInterceptor().create(LoginService.class);
+    }
+
+    @Provides
+    @Singleton
+    public AuthService provideAuthService(RequestAuthenticator requestAuthenticator) {
+        return getRetrofit(requestAuthenticator).create(AuthService.class);
     }
 
     @Provides

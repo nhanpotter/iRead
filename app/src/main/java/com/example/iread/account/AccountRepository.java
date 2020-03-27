@@ -12,11 +12,13 @@ import io.reactivex.rxjava3.core.Single;
 public class AccountRepository {
     private static final String LOG_TAG = AccountRepository.class.getSimpleName();
     private final LoginService loginService;
+    private final AuthService authService;
     private AuthHolder authHolder;
 
     @Inject
-    public AccountRepository(LoginService loginService, AuthHolder authHolder) {
+    public AccountRepository(LoginService loginService, AuthService authService, AuthHolder authHolder) {
         this.loginService = loginService;
+        this.authService = authService;
         this.authHolder = authHolder;
     }
 
@@ -33,11 +35,11 @@ public class AccountRepository {
     }
 
     public Single<User> getUserInfo() {
-        return loginService.getUserInfo();
+        return authService.getUserInfo();
     }
 
     public Completable logout() {
-        return loginService.logout().doOnComplete(() -> {
+        return authService.logout().doOnComplete(() -> {
             authHolder.setToken(null);
         });
     }
