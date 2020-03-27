@@ -25,11 +25,13 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public BookListAdapter(Context context, List<Book> booksList) {
+    public BookListAdapter(Context context, List<Book> booksList, ItemClickListener mClickListener) {
         this.mInflater = LayoutInflater.from(context);
 
         this.booksList = booksList;
         this.booksListFull = new ArrayList<>(booksList);
+
+        this.mClickListener = mClickListener;
     }
 
     public void setBooksList(List<Book> booksList) {
@@ -96,18 +98,18 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
-        ImageButton myImageButton;
+        ImageButton thumbnail;
 
         ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textView2);
-            myImageButton = itemView.findViewById(R.id.imageButton4);
-            itemView.setOnClickListener(this);
+            thumbnail = itemView.findViewById(R.id.imageButton4);
+            thumbnail.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 

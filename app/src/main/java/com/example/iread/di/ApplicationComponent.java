@@ -2,7 +2,6 @@ package com.example.iread.di;
 
 import com.example.iread.MainActivity;
 import com.example.iread.account.LoginFragment;
-
 import com.example.iread.books.BookDetailsFragment;
 import com.example.iread.books.BooksFragment;
 

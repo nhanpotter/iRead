@@ -19,7 +19,11 @@
     <fragment
         android:id="@+id/booksFragment"
         android:name="com.example.iread.books.BooksFragment"
-        android:label="BooksFragment" />
+        android:label="BooksFragment" >
+        <action
+            android:id="@+id/action_booksFragment_to_bookDetailsFragment"
+            app:destination="@id/bookDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.example.iread.account.AccountFragment"
