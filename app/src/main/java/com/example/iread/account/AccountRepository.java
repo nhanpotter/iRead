@@ -5,6 +5,7 @@ import android.util.Log;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 
 @Singleton
@@ -29,5 +30,15 @@ public class AccountRepository {
 
     public boolean isLoggedIn() {
         return authHolder.isLoggedIn();
+    }
+
+    public Single<User> getUserInfo() {
+        return loginService.getUserInfo();
+    }
+
+    public Completable logout() {
+        return loginService.logout().doOnComplete(() -> {
+            authHolder.setToken(null);
+        });
     }
 }
