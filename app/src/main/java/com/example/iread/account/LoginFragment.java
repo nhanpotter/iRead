@@ -1,5 +1,6 @@
 package com.example.iread.account;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,8 @@ import androidx.navigation.Navigation;
 import com.example.iread.MainActivity;
 import com.example.iread.MyApplication;
 import com.example.iread.R;
+import com.example.iread.utils.CustomProgressDialog;
+import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -31,8 +35,7 @@ public class LoginFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        MainActivity mainActivity = (MainActivity) getActivity();
-        ((MyApplication)context.getApplicationContext()).appComponent.inject(this);
+        ((MyApplication)MyApplication.applicationContext).appComponent.inject(this);
     }
 
     @Nullable
@@ -51,14 +54,9 @@ public class LoginFragment extends Fragment {
                 loginViewModel.login(username, password);
             }
         });
-        Log.d(LOG_TAG, rootView.toString());
-        if (loginViewModel.isLoggedIn()) {
-            Log.d(LOG_TAG, rootView.toString());
-            Navigation.findNavController(rootView).navigate(R.id.homeFragment);
-        }
+        CustomProgressDialog dialog = new CustomProgressDialog(getContext());
 
         loginViewModel.loggedIn.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean)
@@ -66,11 +64,34 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        loginViewModel.error.observe(getViewLifecycleOwner(), new Observer<String> () {
+            @Override
+            public void onChanged(String s) {
+                Snackbar.make(rootView, s, Snackbar.LENGTH_LONG).show();
+            }
+        });
+
+        loginViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                dialog.show(aBoolean);
+            }
+        });
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+//        if (loginViewModel.isLoggedIn()) {
+//            Navigation.findNavController(rootView).navigate(R.id.homeFragment);
+//        }
     }
 
     private void popBackStack() {
         int destinationId = R.id.homeFragment;
         Navigation.findNavController(rootView).popBackStack(destinationId, false);
     }
+
 }

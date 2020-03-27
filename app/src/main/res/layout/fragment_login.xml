@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -34,8 +34,8 @@
         android:layout_marginEnd="164dp"
         android:layout_marginRight="164dp"
         android:layout_marginBottom="175dp"
-        app:fontFamily="monospace"
         android:text="@string/login_header"
+        app:fontFamily="monospace"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,16 +47,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        app:fontFamily="monospace"
+        android:autofillHints="@string/password_hint"
         android:hint="@string/password_hint"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
+        app:fontFamily="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_field"
-        android:autofillHints="@string/password_hint" />
+        app:layout_constraintTop_toBottomOf="@+id/username_field" />
 
     <TextView
         android:id="@+id/textView7"
@@ -103,14 +103,14 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:autofillHints="@string/email_hint_field"
         android:hint="@string/email_hint_field"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:fontFamily="monospace"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        android:autofillHints="@string/email_hint_field" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/textView8"
@@ -142,10 +142,10 @@
         android:layout_marginRight="130dp"
         android:layout_marginBottom="498dp"
         android:background="#00FFFFFF"
+        android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/app"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/app" />
 </androidx.constraintlayout.widget.ConstraintLayout>

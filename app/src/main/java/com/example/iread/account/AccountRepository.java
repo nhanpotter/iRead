@@ -3,9 +3,11 @@ package com.example.iread.account;
 import android.util.Log;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.rxjava3.core.Single;
 
+@Singleton
 public class AccountRepository {
     private static final String LOG_TAG = AccountRepository.class.getSimpleName();
     private final LoginService loginService;

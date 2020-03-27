@@ -1,6 +1,8 @@
 package com.example.iread.di.module;
 
 import com.example.iread.account.LoginService;
+import com.example.iread.account.RequestAuthenticator;
+import com.example.iread.books.BookService;
 
 import javax.inject.Singleton;
 
@@ -8,6 +10,7 @@ import dagger.Module;
 import dagger.Provides;
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,10 +22,11 @@ public class NetworkModule {
 
     @Singleton
     @Provides
-    public Retrofit getRetrofit() {
+    public Retrofit getRetrofit(RequestAuthenticator requestAuthenticator) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(requestAuthenticator)
                 .addInterceptor(interceptor)
                 .build();
 
@@ -36,7 +40,13 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    public LoginService provideLoginService() {
-        return getRetrofit().create(LoginService.class);
+    public LoginService provideLoginService(RequestAuthenticator requestAuthenticator) {
+        return getRetrofit(requestAuthenticator).create(LoginService.class);
+    }
+
+    @Provides
+    @Singleton
+    public BookService provideBookService(RequestAuthenticator requestAuthenticator) {
+        return getRetrofit(requestAuthenticator).create(BookService.class);
     }
 }

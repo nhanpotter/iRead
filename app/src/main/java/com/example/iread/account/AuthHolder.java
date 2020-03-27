@@ -1,29 +1,36 @@
 package com.example.iread.account;
 
-import javax.inject.Inject;
+import com.example.iread.data.Preference;
 
-class AuthHolder {
-    private String token = null;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
+public class AuthHolder {
+    private final String TOKEN_KEY = "TOKEN";
+    private Preference preference;
 
     @Inject
-    public AuthHolder() {}
-
-    public String getToken() {
-        return this.token;
+    public AuthHolder(Preference preference) {
+        this.preference = preference;
     }
 
-    public void setToken(String str) {
-        this.token = str;
+    public String getToken() {
+        return preference.getString(TOKEN_KEY);
+    }
+
+    public void setToken(String value) {
+        preference.putString(TOKEN_KEY, value);
     }
 
     public String getAuthorization() {
         if (!isLoggedIn())
             return null;
-        return "Token: " + this.token;
+        return "Token " + this.getToken();
     }
 
     public boolean isLoggedIn() {
-        if (this.token == null) {
+        if (this.getToken() == null) {
             return false;
         }
         return true;

@@ -43,7 +43,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     // binds the data to the TextView in each cell
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.title.setText("Title: " + booksList.get(position).getTitle());
+        holder.title.setText(booksList.get(position).getBookTitle());
     }
 
     // total number of cells
@@ -67,7 +67,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for (Book item : booksListFull) {
-                    if(item.getTitle().toLowerCase().contains(filterPattern)) {
+                    if(item.getBookTitle().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
                 }

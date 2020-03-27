@@ -1,25 +1,31 @@
 package com.example.iread.books;
 
-import java.util.Date;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Book {
-    private int id;
-    private String uid;
-    private String title;
-    private String author;
-    /*private List<Genre> genre;*/
-    private String url;
-    private String thumbnail;
-    private String summary;
-    private String language;
-    private Date publishedDate;
-    private String ISBN;
+    public int id;
+    public String uid;
+    public String bookTitle;
+    public String subject;
+    public String summary;
+    public String originalPublisher;
+    public String digitalPublisher;
+    public String itemFormat;
+    public String language;
+    public String itemCopyright;
+    public String authorName;
+    public String published;
+    public String resourceUrl;
+    public String cover;
+    public String thumbnail;
+    public float overallRating;
 
-    public Book(String title) {
-        this.title = title;
-    }
+    public Genre genre;
 
-    public String getTitle() {
-        return title;
+    public String getBookTitle() {
+        return bookTitle;
     }
 }
