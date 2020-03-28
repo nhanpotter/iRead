@@ -9,7 +9,7 @@
     tools:context=".books.BooksFragment">
 
     <SearchView
-        android:id="@+id/searchView2"
+        android:id="@+id/searchBook"
         android:layout_width="0dp"
         android:layout_height="33dp"
         android:layout_marginStart="16dp"
@@ -22,7 +22,7 @@
         android:clickable="true"
         android:focusable="true"
         android:inputType="textShortMessage"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/bookList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/bookList"
         android:layout_width="0dp"
         android:layout_height="543dp"
         android:layout_marginStart="16dp"
@@ -40,6 +40,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView2" />
+        app:layout_constraintTop_toBottomOf="@+id/searchBook" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

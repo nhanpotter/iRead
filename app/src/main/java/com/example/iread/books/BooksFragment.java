@@ -148,7 +148,7 @@ public class BooksFragment extends Fragment {
     }
 
     private void setUpRecycleView(List<Book> booksList) {
-        RecyclerView recyclerView = getView().findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = getView().findViewById(R.id.bookList);
         int numberOfColumns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), numberOfColumns));
 
@@ -172,7 +172,7 @@ public class BooksFragment extends Fragment {
     }
 
     private void setUpSearchView() {
-        SearchView searchView = getView().findViewById(R.id.searchView2);
+        SearchView searchView = getView().findViewById(R.id.searchBook);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
