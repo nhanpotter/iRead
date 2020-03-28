@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDestinationChanged(@NonNull NavController controller,
                 @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 List<Integer> screenWithoutNavBar = Arrays.asList(
-                        R.id.loginFragment
+                        R.id.loginFragment, R.id.signupFragment
                 );
                 if (screenWithoutNavBar.contains(destination.getId())) {
                     bottomNavigationView.setVisibility(View.GONE);

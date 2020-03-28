@@ -23,12 +23,17 @@ public class BookDetailsFragment extends Fragment {
     private TextView title;
     private TextView author;
     private TextView description;
-    private RatingBar ratingBarStars;
+    private RatingBar ratingBarIndicator;
+    private RatingBar ratingBarUser;
     private float userRating = 0;
     private int id;
 
     @Inject
     BookDetailsViewModel bookDetailsViewModel;
+    @Inject
+    CommentViewModel commentViewModel;
+    @Inject
+    RatingViewModel ratingViewModel;
 
     public BookDetailsFragment() {
 
@@ -44,19 +49,33 @@ public class BookDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_bookdetails, container, false);
+        id = getArguments().getInt("id");
+
         title = v.findViewById(R.id.title);
         author = v.findViewById(R.id.author);
         description = v.findViewById(R.id.description);
 
-        ratingBarStars = v.findViewById(R.id.ratingBar);
+        ratingBarIndicator = v.findViewById(R.id.ratingBarIndicator);
+//        ratingViewModel.getRating(id);
+//        ratingViewModel.ratingTotal.observe(getViewLifecycleOwner(), new Observer<Rating>() {
+//            @Override
+//            public void onChanged(Rating rating) {
+//                ratingBarIndicator.setIsIndicator(false);
+//                ratingBarIndicator.setRating(rating.rating);
+//                ratingBarIndicator.setIsIndicator(true);
+//            }
+//        });
 
-        id = getArguments().getInt("id");
+        ratingBarUser = v.findViewById(R.id.ratingBar);
+
         displayDetails(id);
 
-        ratingBarStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+        ratingBarUser.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b){
                 userRating = ratingBar.getRating();
+//                ratingViewModel.postRating(id, userRating);
+
                 String message = "Thank you for rating the book!\n" +
                                 "Your rating is " + userRating;
                 Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();

@@ -35,10 +35,21 @@
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailsFragment"
         android:name="com.example.iread.books.BookDetailsFragment"
         android:label="fragment_bookdetails"
         tools:layout="@layout/fragment_bookdetails" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.iread.account.SignupFragment"
+        android:label="SignupFragment" >
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

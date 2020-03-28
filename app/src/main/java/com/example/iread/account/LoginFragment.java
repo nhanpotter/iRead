@@ -46,6 +46,13 @@ public class LoginFragment extends Fragment {
         final TextView usernameTextView = (TextView) rootView.findViewById(R.id.username_field);
         final TextView passwordTextview = (TextView) rootView.findViewById(R.id.password_field);
         Button button = (Button) rootView.findViewById(R.id.login_button);
+        TextView signupTextView = rootView.findViewById(R.id.signup);
+        signupTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(rootView).navigate(R.id.signupFragment);
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
