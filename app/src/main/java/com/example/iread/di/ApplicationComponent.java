@@ -1,6 +1,7 @@
 package com.example.iread.di;
 
 import com.example.iread.MainActivity;
+import com.example.iread.account.AccountFragment;
 import com.example.iread.account.LoginFragment;
 import com.example.iread.books.BookDetailsFragment;
 import com.example.iread.books.BooksFragment;
@@ -16,5 +17,6 @@ import dagger.Component;
 public interface ApplicationComponent {
     void inject(LoginFragment loginFragment);
     void inject(BooksFragment booksFragment);
+    void inject(AccountFragment accountFragment);
     void inject(BookDetailsFragment bookDetailsFragment);
 }
