@@ -1,6 +1,5 @@
 package com.example.iread.account;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
-import com.example.iread.MyApplication;
 import com.example.iread.R;
 import com.example.iread.utils.CustomProgressDialog;
-import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 

@@ -15,6 +15,8 @@ import androidx.navigation.Navigation;
 
 import com.example.iread.MyApplication;
 import com.example.iread.R;
+import com.example.iread.utils.CustomProgressDialog;
+import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -61,7 +63,31 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 logoutViewModel.logout();
-                Navigation.findNavController(getView()).navigate(R.id.loginFragment);
+            }
+        });
+
+        CustomProgressDialog dialog = new CustomProgressDialog(getContext());
+
+        logoutViewModel.loggedIn.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(!aBoolean)
+                    Navigation.findNavController(rootview).navigate(R.id.loginFragment);
+            }
+        });
+
+        logoutViewModel.error.observe(getViewLifecycleOwner(), new Observer<String> () {
+            @Override
+            public void onChanged(String s) {
+                Snackbar.make(rootview, s, Snackbar.LENGTH_LONG).show();
+            }
+        });
+
+        logoutViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                dialog.show(aBoolean);
             }
         });
 

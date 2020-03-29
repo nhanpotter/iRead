@@ -163,7 +163,7 @@
         android:text="Comments"
         android:textColor="#FA000000"
         android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/CommentsScrollBar"
+        app:layout_constraintBottom_toTopOf="@+id/commentRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.154"
         app:layout_constraintStart_toStartOf="parent"
@@ -171,18 +171,28 @@
         app:layout_constraintVertical_bias="0.363" />
 
     <TextView
+<<<<<<< Updated upstream
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
         android:textStyle="bold"
+=======
+        android:id="@+id/description"
+        android:layout_width="314dp"
+        android:layout_height="66dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="5dip"
+        app:layout_constraintBottom_toTopOf="@+id/commentRecyclerView"
+>>>>>>> Stashed changes
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thumbnail" />
 
     <Button
+<<<<<<< Updated upstream
         android:id="@+id/readButton"
         android:layout_width="72dp"
         android:layout_height="35dp"
@@ -192,5 +202,38 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+=======
+        android:id="@+id/addCommButton"
+        android:layout_width="34dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="4dp"
+        android:background="#E917D1BB"
+        android:text="+"
+        android:textColor="#FBFBFB"
+        android:textSize="20dp"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@+id/commentRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewComments"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.31" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentRecyclerView"
+        android:layout_width="316dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:background="#80979494"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.847">
+    </androidx.recyclerview.widget.RecyclerView>
+>>>>>>> Stashed changes
 
 </androidx.constraintlayout.widget.ConstraintLayout>
