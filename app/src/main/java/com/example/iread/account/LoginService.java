@@ -9,4 +9,6 @@ public interface LoginService {
     @POST("auth/token/login/")
     Single<LoginResponse> login(@Body Login login);
 
+    @POST("auth/users/")
+    Single<SignUpResponse> signUp(@Body PostUser user);
 }

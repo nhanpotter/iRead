@@ -50,7 +50,7 @@ public class RatingViewModel extends ViewModel {
         );
     }
 
-    public void postRating(int id, float rating) {
+    public void postRating(int id, int rating) {
         Single<Rating> ratingObservable = feedbackRepository.postRating(id, rating);
         compositeDisposable.add(ratingObservable
                 .subscribeOn(Schedulers.io())

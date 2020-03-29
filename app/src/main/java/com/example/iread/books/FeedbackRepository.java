@@ -27,7 +27,7 @@ public class FeedbackRepository {
         return feedbackService.getRating(bookId);
     }
 
-    public Single<Rating> postRating(int bookId, float rating) {
+    public Single<Rating> postRating(int bookId, int rating) {
         return feedbackService.postRating(bookId, new PostRating(rating));
     }
 }

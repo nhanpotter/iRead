@@ -1,9 +1,10 @@
 package com.example.iread.books;
 
-import com.google.gson.annotations.SerializedName;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Rating {
-    @SerializedName("book")
+    @JsonProperty("book")
     public int bookId;
     public float rating;
 }

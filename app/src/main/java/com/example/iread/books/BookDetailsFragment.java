@@ -25,7 +25,7 @@ public class BookDetailsFragment extends Fragment {
     private TextView description;
     private RatingBar ratingBarIndicator;
     private RatingBar ratingBarUser;
-    private float userRating = 0;
+    private int userRating = 0;
     private int id;
 
     @Inject
@@ -73,8 +73,8 @@ public class BookDetailsFragment extends Fragment {
         ratingBarUser.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b){
-                userRating = ratingBar.getRating();
-//                ratingViewModel.postRating(id, userRating);
+                userRating = (int) ratingBar.getRating();
+                ratingViewModel.postRating(id, userRating);
 
                 String message = "Thank you for rating the book!\n" +
                                 "Your rating is " + userRating;

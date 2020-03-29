@@ -1,11 +1,11 @@
 package com.example.iread.books;
 
 import com.example.iread.account.User;
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 class Comment {
     public User user;
-    @SerializedName("book")
+    @JsonProperty("book")
     public int bookId;
     public String comment;
     public String time;

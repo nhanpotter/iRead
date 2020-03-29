@@ -43,4 +43,8 @@ public class AccountRepository {
             authHolder.setToken(null);
         });
     }
+
+    public Single<SignUpResponse> signUp(String username, String email, String password, String rePassword) {
+        return loginService.signUp(new PostUser(username, email, password, rePassword));
+    }
 }

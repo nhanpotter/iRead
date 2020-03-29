@@ -1,9 +1,9 @@
 package com.example.iread.books;
 
 class PostRating {
-    public float rating;
+    public int rating;
 
-    public PostRating(float rating) {
+    public PostRating(int rating) {
         this.rating = rating;
     }
 }

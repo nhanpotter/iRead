@@ -9,6 +9,6 @@ public interface AuthService {
     @GET("auth/users/me/")
     Single<User> getUserInfo();
 
-    @POST("auth/token/logout")
+    @POST("auth/token/logout/")
     Completable logout();
 }
