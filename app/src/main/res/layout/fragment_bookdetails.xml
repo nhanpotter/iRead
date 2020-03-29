@@ -11,39 +11,19 @@
         android:id="@+id/thumbnail"
         android:layout_width="182dp"
         android:layout_height="186dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/latest"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="TextView"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/thumbnail" />
-
-    <TextView
-        android:id="@+id/author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/downloadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="28dp"
         android:clickable="true"
         android:scaleX="0.75"
         android:scaleY="0.75"
@@ -51,49 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/stat_sys_download_done" />
-
-    <RatingBar
-        android:id="@+id/ratingBarIndicator"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:isIndicator="true"
-        android:stepSize="0.5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/author" />
-
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="247dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="35dp"
-        android:numStars="5"
-        android:scaleX="0.5"
-        android:scaleY="0.5"
-        android:stepSize="1"
-        app:layout_constraintBottom_toTopOf="@+id/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBarIndicator" />
-
-    <TextView
-        android:id="@+id/textViewRatings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="8dp"
-        android:text="Rating"
-        android:textColor="#FA000000"
-        android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/textViewDescript"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBarIndicator"
-        app:layout_constraintVertical_bias="0.012"
-        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textViewDescript"
@@ -106,46 +43,90 @@
         android:typeface="monospace"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-        app:layout_constraintVertical_bias="0.941" />
+        app:layout_constraintVertical_bias="0.944" />
+
+    <RatingBar
+        android:id="@+id/ratingBarIndicator"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:isIndicator="true"
+        android:stepSize="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/author" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="247dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="35dp"
+        android:numStars="5"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:stepSize="1"
+        app:layout_constraintBottom_toTopOf="@+id/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarIndicator"
+        app:layout_constraintVertical_bias="0.523" />
+
+    <ScrollView
+        android:id="@+id/CommentsScrollBar"
+        android:layout_width="316dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="44dp"
+        android:background="#80979494"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.835">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
 
     <TextView
-        android:id="@+id/textViewComments"
+        android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="18dp"
-        android:text="Comments"
-        android:textColor="#FA000000"
-        android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/CommentsScrollBar"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.375" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <TextView
-        android:id="@+id/description"
-        android:layout_width="314dp"
-        android:layout_height="66dp"
-        android:background="@drawable/round_rectangle"
-        android:padding="5dip"
-        app:layout_constraintBottom_toTopOf="@+id/CommentsScrollBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        android:id="@+id/textViewRatings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="8dp"
+        android:text="Rating"
+        android:textColor="#FA000000"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@+id/textViewDescript"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.855" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarIndicator"
+        app:layout_constraintVertical_bias="0.036"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/AddCommButton"
         android:layout_width="34dp"
         android:layout_height="33dp"
         android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
         android:layout_marginTop="7dp"
         android:layout_marginBottom="4dp"
         android:background="#E917D1BB"
@@ -158,26 +139,58 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textViewComments"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.296" />
 
-    <ScrollView
-        android:id="@+id/CommentsScrollBar"
-        android:layout_width="316dp"
-        android:layout_height="75dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:background="#80979494"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="314dp"
+        android:layout_height="66dp"
+        android:background="@drawable/round_rectangle"
+        android:padding="5dip"
+        app:layout_constraintBottom_toTopOf="@+id/CommentsScrollBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.847">
+        app:layout_constraintVertical_bias="0.852" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/textViewComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="18dp"
+        android:text="Comments"
+        android:textColor="#FA000000"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@+id/CommentsScrollBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.363" />
 
-        </LinearLayout>
-    </ScrollView>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thumbnail" />
+
+    <Button
+        android:id="@+id/readButton"
+        android:layout_width="72dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="56dp"
+        android:text="Read"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
