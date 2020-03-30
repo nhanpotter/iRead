@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">iRead</string>
+    <string name="title_listbooks">Books</string>
+    <string name="search_hint">Search books</string>
+    <string name="home_fragment">Home Fragment</string>
+    <string name="login_header">LOGIN</string>
+    <string name="password_hint">Password</string>
+    <string name="sign_up_header">SIGN UP</string>
+    <string name="email_hint_field">Email</string>
+    <string name="google_account">Google Account</string>
+    <string name="sorting_menu">Sorting</string>
+    <string name="name_ascending">Name (Ascending)</string>
+    <string name="name_descending">Name (Descending)</string>
+    <string name="time_ascending">Time (Ascending)</string>
+    <string name="time_descending">Time (Descending)</string>
+    <string name="genre">Genre</string>
+    <string name="all_genre">All Genre</string>
+    <string name="fantasy">Fantasy</string>
+    <string name="adventure">Adventure</string>
+    <string name="romance">Romance</string>
+    <string name="mystery">Mystery</string>
+    <string name="horror">Horror</string>
+    <string name="fiction">Fiction</string>
+    <string name="humor">Humor</string>
+    <string name="rating">Rating</string>
+    <string name="all_rating">All Rating</string>
+    <string name="_0_1_star">0-1 Star</string>
+    <string name="_1_2_star">1-2 Star</string>
+    <string name="_2_3_star">2-3 Star</string>
+    <string name="_3_4_star">3-4 Star</string>
+    <string name="_4_5_star">4-5 Star</string>
 </resources>
