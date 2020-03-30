@@ -134,6 +134,8 @@ public class BookDetailsFragment extends Fragment {
                 });
             }
         });
+
+
     }
 
     private void setupCommentRecyclerView(List<Comment> commentList) {
