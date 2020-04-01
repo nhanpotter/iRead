@@ -23,16 +23,14 @@ public class RatingViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<Boolean> mutableProgress = new MutableLiveData<>();
     public LiveData<Boolean> progress = mutableProgress;
-    private MutableLiveData<Rating> mutableRatingTotal = new MutableLiveData<>();
-    public LiveData<Rating> ratingTotal = mutableRatingTotal;
     private MutableLiveData<Rating> mutableRating = new MutableLiveData<>();
     public LiveData<Rating> rating = mutableRating;
     private MutableLiveData<String> mutableError = new MutableLiveData<>();
     public LiveData<String> error = mutableError;
 
     public void getRating(int id) {
-        Single<Rating> ratingTotalObservable = feedbackRepository.getRating(id);
-        compositeDisposable.add(ratingTotalObservable
+        Single<Rating> ratingObservable = feedbackRepository.getRating(id);
+        compositeDisposable.add(ratingObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable -> {
@@ -42,7 +40,7 @@ public class RatingViewModel extends ViewModel {
                     mutableProgress.setValue(false);
                 })
                 .subscribe(data -> {
-                    mutableRatingTotal.setValue(data);
+                    mutableRating.setValue(data);
                 }, error -> {
                     mutableError.setValue("Unable to get rating");
                     throw(error);
