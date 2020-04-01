@@ -23,4 +23,8 @@ public class BookRepository {
     public Single<Book> getBookDetail(int id) {
         return bookService.getBookDetail(id);
     }
+
+    public Single<List<Book>> getRecommendList() {
+        return bookService.getRecommendList();
+    }
 }

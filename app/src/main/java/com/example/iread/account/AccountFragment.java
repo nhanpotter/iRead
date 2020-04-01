@@ -43,10 +43,13 @@ public class AccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootview = inflater.inflate(R.layout.fragment_account, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_account, container, false);
 
-        username = rootview.findViewById(R.id.username);
-        email = rootview.findViewById(R.id.email);
+        CustomProgressDialog dialog = new CustomProgressDialog(getContext());
+
+        username = rootView.findViewById(R.id.username);
+        email = rootView.findViewById(R.id.email);
+        logoutButton = rootView.findViewById(R.id.logoutButton);
 
         accountViewModel.getUserInfo();
         accountViewModel.userInfo.observe(getViewLifecycleOwner(), new Observer<User>() {
@@ -56,9 +59,21 @@ public class AccountFragment extends Fragment {
                 email.setText(user.email);
             }
         });
+        accountViewModel.error.observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Snackbar.make(rootView, s, Snackbar.LENGTH_LONG).show();
+            }
+        });
 
-        logoutButton = rootview.findViewById(R.id.logoutButton);
+        accountViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
 
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                dialog.show(aBoolean);
+            }
+        });
+        
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,31 +81,28 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        CustomProgressDialog dialog = new CustomProgressDialog(getContext());
-
         logoutViewModel.loggedIn.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if(!aBoolean)
-                    Navigation.findNavController(rootview).navigate(R.id.loginFragment);
+                    Navigation.findNavController(rootView).navigate(R.id.loginFragment);
             }
         });
 
         logoutViewModel.error.observe(getViewLifecycleOwner(), new Observer<String> () {
             @Override
             public void onChanged(String s) {
-                Snackbar.make(rootview, s, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(rootView, s, Snackbar.LENGTH_LONG).show();
             }
         });
 
         logoutViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-
             @Override
             public void onChanged(Boolean aBoolean) {
                 dialog.show(aBoolean);
             }
         });
 
-        return rootview;
+        return rootView;
     }
 }

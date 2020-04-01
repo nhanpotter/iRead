@@ -13,4 +13,7 @@ public interface BookService {
 
     @GET("book/{id}/")
     Single<Book> getBookDetail(@Path("id") int id);
+
+    @GET("book/get/recommend/")
+    Single<List<Book>> getRecommendList();
 }

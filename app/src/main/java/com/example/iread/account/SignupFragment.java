@@ -1,5 +1,6 @@
 package com.example.iread.account;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
+import com.example.iread.MyApplication;
 import com.example.iread.R;
 import com.example.iread.utils.CustomProgressDialog;
+import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -23,12 +27,13 @@ public class SignupFragment extends Fragment {
     @Inject
     SignupViewModel signupViewModel;
 
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//
-//        ((MyApplication)MyApplication.applicationContext).appComponent.inject(this);
-//    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        ((MyApplication) MyApplication.applicationContext).appComponent.inject(this);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,21 +42,25 @@ public class SignupFragment extends Fragment {
         final TextView usernameTextView = rootView.findViewById(R.id.user);
         final TextView emailTextView = rootView.findViewById(R.id.email);
         final TextView passwordTextview = rootView.findViewById(R.id.pw1);
-        final TextView confirmPasswordTextview = rootView.findViewById(R.id.pw2);
+        final TextView rePasswordTextview = rootView.findViewById(R.id.pw2);
         Button confirmSignup = rootView.findViewById(R.id.confirm);
+
+        CustomProgressDialog dialog = new CustomProgressDialog(getContext());
+
         confirmSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(passwordTextview.getText().toString().equals(confirmPasswordTextview.getText().toString())) {
+                if(passwordTextview.getText().toString().equals(rePasswordTextview.getText().toString())) {
                     String username = usernameTextView.getText().toString();
                     String email = emailTextView.getText().toString();
                     String password = passwordTextview.getText().toString();
+                    String rePassword = rePasswordTextview.getText().toString();
+                    signupViewModel.signUp(username, email, password, rePassword);
 
                     Navigation.findNavController(rootView).navigate(R.id.loginFragment);
                 }
             }
         });
-        CustomProgressDialog dialog = new CustomProgressDialog(getContext());
 
         return rootView;
     }

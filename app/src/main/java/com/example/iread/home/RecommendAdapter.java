@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iread.R;
 import com.example.iread.books.Book;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.ViewHolder> {
@@ -41,12 +43,18 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(recommendedList.get(position).getBookTitle());
+        String coverURL = recommendedList.get(position).cover.replace("http", "https");
+        Picasso.get().load(coverURL).fit().into(holder.thumbnail);
     }
 
     // total number of cells
     @Override
     public int getItemCount() {
         return recommendedList.size();
+    }
+
+    public void setRecommendList(List<Book> recommendList) {
+        this.recommendedList = recommendList;
     }
 
 
@@ -59,6 +67,7 @@ public class RecommendAdapter extends RecyclerView.Adapter<RecommendAdapter.View
             super(itemView);
             title = itemView.findViewById(R.id.textView2);
             thumbnail = itemView.findViewById(R.id.imageButton4);
+            thumbnail.setOnClickListener(this);
         }
 
         @Override

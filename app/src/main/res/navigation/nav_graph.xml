@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_homeFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookDetailsFragment"
+            app:destination="@id/bookDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/booksFragment"
@@ -47,6 +50,9 @@
         <action
             android:id="@+id/action_bookDetailsFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_bookDetailsFragment_to_ratingFragment"
+            app:destination="@id/ratingFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -56,8 +62,20 @@
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/commentFragment"
         android:name="com.example.iread.books.CommentFragment"
-        android:label="CommentFragment" />
+        android:label="CommentFragment" >
+        <action
+            android:id="@+id/action_commentFragment_to_bookDetailsFragment"
+            app:destination="@id/bookDetailsFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/ratingFragment"
+        android:name="com.example.iread.books.RatingFragment"
+        android:label="RatingFragment" >
+        <action
+            android:id="@+id/action_ratingFragment_to_bookDetailsFragment"
+            app:destination="@id/bookDetailsFragment" />
+    </dialog>
 </navigation>

@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.iread.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,8 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.title.setText(booksList.get(position).getBookTitle());
+        String coverURL = booksList.get(position).cover.replace("http", "https");
+        Picasso.get().load(coverURL).fit().into(holder.thumbnail);
     }
 
     // total number of cells
