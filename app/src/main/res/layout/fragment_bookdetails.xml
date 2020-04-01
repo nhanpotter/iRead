@@ -76,6 +76,7 @@
         android:scaleX="0.5"
         android:scaleY="0.5"
         android:stepSize="1"
+        android:isIndicator="true"
         app:layout_constraintBottom_toTopOf="@+id/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBarIndicator" />
@@ -142,10 +143,9 @@
 
     <Button
         android:id="@+id/addCommButton"
-        android:layout_width="34dp"
+        android:layout_width="33dp"
         android:layout_height="33dp"
         android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
         android:layout_marginTop="7dp"
         android:layout_marginBottom="4dp"
         android:background="#E917D1BB"
@@ -159,6 +159,20 @@
         app:layout_constraintStart_toEndOf="@+id/textViewComments"
         app:layout_constraintTop_toBottomOf="@+id/description"
         app:layout_constraintVertical_bias="0.31" />
+
+    <Button
+        android:id="@+id/addRateButton"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="80dp"
+        android:background="#E917D1BB"
+        android:text="+"
+
+        android:textColor="#FBFBFB"
+        android:textSize="20dp"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBarIndicator" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentRecyclerView"
