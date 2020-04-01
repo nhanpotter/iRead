@@ -38,20 +38,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/downloadButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="36dp"
-        android:clickable="true"
-        android:scaleX="0.75"
-        android:scaleY="0.75"
-        app:backgroundTint="#12D6C4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/stat_sys_download_done" />
-
     <RatingBar
         android:id="@+id/ratingBarIndicator"
         style="?android:attr/ratingBarStyleSmall"
@@ -187,13 +173,12 @@
         app:layout_constraintVertical_bias="0.847"/>
 
     <Button
-    android:id="@+id/readButton"
-    android:layout_width="72dp"
-    android:layout_height="35dp"
-    android:layout_marginEnd="44dp"
-    android:layout_marginBottom="56dp"
-    android:text="Read"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent" />
+        android:id="@+id/readButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:text="Download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

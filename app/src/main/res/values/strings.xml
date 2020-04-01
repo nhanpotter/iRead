@@ -24,13 +24,14 @@
     <string name="humor">Humor</string>
     <string name="rating">Rating</string>
     <string name="all_rating">All Rating</string>
-    <string name="_0_1_star">0-1 Star</string>
-    <string name="_1_2_star">1-2 Star</string>
-    <string name="_2_3_star">2-3 Star</string>
-    <string name="_3_4_star">3-4 Star</string>
-    <string name="_4_5_star">4-5 Star</string>
+    <string name="_0_1_star">0–1 Star</string>
+    <string name="_1_2_star">1–2 Star</string>
+    <string name="_2_3_star">2–3 Star</string>
+    <string name="_3_4_star">3–4 Star</string>
+    <string name="_4_5_star">4–5 Star</string>
     <string name="send_comment">Send</string>
     <string name="cancel_comment">Cancel</string>
     <string name="send_rating">Send</string>
     <string name="cancel_rating">Cancel</string>
+    <string name="read">READ</string>
 </resources>

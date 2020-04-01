@@ -38,7 +38,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.preference:preference:1.1.0'
-    /*implementation "com.folioreader:folioreader:0.5.4"*/
 
     implementation "androidx.navigation:navigation-fragment:2.3.0-alpha04"
     implementation "androidx.navigation:navigation-ui:2.3.0-alpha04"
@@ -61,4 +60,22 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.3'
 //    Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+//    FolioReader
+    implementation "com.folioreader:folioreader:0.5.4"
+    //progressBar error solve
+    configurations.matching { it.name == '_internal_aapt2_binary' }.all { config ->
+        config.resolutionStrategy.eachDependency { details ->
+            details.useVersion("3.3.2-5309881")
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
 }

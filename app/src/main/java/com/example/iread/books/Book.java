@@ -39,4 +39,8 @@ public class Book {
     public String getAuthorName() {
         return authorName;
     }
+
+    public String getResourceUrl() {
+        return resourceUrl;
+    }
 }

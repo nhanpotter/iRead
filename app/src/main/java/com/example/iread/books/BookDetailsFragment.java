@@ -3,11 +3,13 @@ package com.example.iread.books;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,11 +28,21 @@ import com.example.iread.utils.CustomProgressDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
+import com.example.iread.utils.DownloadTask;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.folioreader.FolioReader;
+import com.folioreader.model.HighLight;
+import com.folioreader.model.locators.ReadLocator;
+import com.folioreader.util.OnHighlightListener;
+import com.folioreader.util.ReadLocatorListener;
+
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class BookDetailsFragment extends Fragment {
+public class BookDetailsFragment extends Fragment implements OnHighlightListener, ReadLocatorListener, FolioReader.OnClosedListener {
     private View rootView;
     CommentAdapter adapter;
 
@@ -43,8 +55,15 @@ public class BookDetailsFragment extends Fragment {
     private Button addCommentButton;
     private Button addRatingButton;
 
+    private Button readButton;
+    private String resourceUrl = null;
+    private File bookFile;
+
     private int userRating = 0;
     private int id;
+
+    // Folio Reader
+    private FolioReader folioReader;
 
     @Inject
     BookDetailsViewModel bookDetailsViewModel;
@@ -79,6 +98,16 @@ public class BookDetailsFragment extends Fragment {
 
         addRatingButton = rootView.findViewById(R.id.addRateButton);
         addCommentButton = rootView.findViewById(R.id.addCommButton);
+        readButton = rootView.findViewById(R.id.readButton);
+        bookFile = new File(getContext().getExternalFilesDir(null), id+".epub");
+
+        if (checkEpubExist()) {
+            readButton.setText(R.string.read);
+        }
+        folioReader = FolioReader.get()
+                .setOnHighlightListener(this)
+                .setReadLocatorListener(this)
+                .setOnClosedListener(this);
 
         displayDetails(id);
 
@@ -97,6 +126,18 @@ public class BookDetailsFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", id);
                 Navigation.findNavController(rootView).navigate(R.id.commentFragment, bundle);
+            }
+        });
+
+        readButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (!checkEpubExist()) {
+                    new DownloadTask(getContext(), readButton, resourceUrl, id);
+                } else {
+                    folioReader.openBook(bookFile.getPath());
+                }
             }
         });
 
@@ -133,6 +174,7 @@ public class BookDetailsFragment extends Fragment {
                         setupCommentRecyclerView(commentList);
                     }
                 });
+                resourceUrl = book.getResourceUrl();
             }
         });
 
@@ -159,5 +201,25 @@ public class BookDetailsFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    private boolean checkEpubExist() {
+        return bookFile.exists();
+    }
+
+
+    @Override
+    public void onFolioReaderClosed() {
+
+    }
+
+    @Override
+    public void onHighlight(HighLight highlight, HighLight.HighLightAction type) {
+
+    }
+
+    @Override
+    public void saveReadLocator(ReadLocator readLocator) {
+
     }
 }
