@@ -10,6 +10,7 @@ import com.example.iread.books.BooksFragment;
 import com.example.iread.books.CommentFragment;
 import com.example.iread.books.RatingFragment;
 import com.example.iread.di.module.NetworkModule;
+import com.example.iread.home.HomeFragment;
 
 import javax.inject.Singleton;
 
@@ -25,4 +26,5 @@ public interface ApplicationComponent {
     void inject(CommentFragment commentFragment);
     void inject(SignupFragment signupFragment);
     void inject(RatingFragment ratingFragment);
+    void inject(HomeFragment homeFragment);
 }
