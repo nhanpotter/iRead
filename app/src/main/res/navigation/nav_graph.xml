@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailsFragment"
@@ -78,4 +81,12 @@
             android:id="@+id/action_ratingFragment_to_bookDetailsFragment"
             app:destination="@id/bookDetailsFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.example.iread.account.ResetPasswordFragment"
+        android:label="ResetPasswordFragment" >
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>
