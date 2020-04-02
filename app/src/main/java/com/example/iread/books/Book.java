@@ -43,4 +43,8 @@ public class Book {
     public String getResourceUrl() {
         return resourceUrl;
     }
+
+    public Genre getGenre() {
+        return genre;
+    }
 }

@@ -3,7 +3,6 @@ package com.example.iread.books;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,8 @@ import android.widget.ImageView;
 
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
@@ -29,7 +26,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import com.example.iread.utils.DownloadTask;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.folioreader.FolioReader;
 import com.folioreader.model.HighLight;
 import com.folioreader.model.locators.ReadLocator;
@@ -37,7 +33,6 @@ import com.folioreader.util.OnHighlightListener;
 import com.folioreader.util.ReadLocatorListener;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -49,6 +44,7 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
     private ImageView cover;
     private TextView title;
     private TextView author;
+    private TextView genre;
     private TextView description;
     private RatingBar ratingBarIndicator;
     private RatingBar ratingBarUser;
@@ -98,6 +94,7 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
         cover = rootView.findViewById(R.id.thumbnail);
         title = rootView.findViewById(R.id.title);
         author = rootView.findViewById(R.id.author);
+        genre = rootView.findViewById(R.id.genre);
         description = rootView.findViewById(R.id.description);
 
         ratingBarIndicator = rootView.findViewById(R.id.ratingBarIndicator);
@@ -159,8 +156,12 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
             public void onChanged(Book book) {
                 String thumbnailURL = book.cover.replace("http", "https");
                 Picasso.get().load(thumbnailURL).fit().into(cover);
-                title.setText(book.getBookTitle());
-                author.setText(book.getAuthorName());
+                String titleString = "Title: " + book.getBookTitle();
+                String authorString = "Author: " + book.getAuthorName();
+                String genreString = "Genre: " + book.getGenre().name;
+                title.setText(titleString);
+                author.setText(authorString);
+                genre.setText(genreString);
 
                 ratingViewModel.getRating(id);
                 ratingBarIndicator.invalidate();
