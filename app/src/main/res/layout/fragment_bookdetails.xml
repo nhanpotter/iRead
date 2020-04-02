@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="TextView"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:text="TextView"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -49,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="TextView"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -60,7 +63,7 @@
             android:layout_marginStart="43dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="42dp"
-            android:background="#80979494"
+            android:background="@drawable/rounded_rectangle3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,11 +121,13 @@
             android:id="@+id/description"
             android:layout_width="314dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/round_rectangle"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="42dp"
+            android:background="@drawable/rounded_rectangle3"
             android:padding="5dip"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.556"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ratingBarIndicator" />
 
@@ -132,8 +137,7 @@
             android:layout_height="33dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="80dp"
-            android:background="#E917D1BB"
-
+            android:background="@drawable/rounded_rectangle2"
             android:text="+"
             android:textColor="#FBFBFB"
             android:textSize="20dp"
@@ -163,7 +167,7 @@
             android:layout_marginStart="7dp"
             android:layout_marginTop="7dp"
             android:layout_marginBottom="4dp"
-            android:background="#E917D1BB"
+            android:background="@drawable/rounded_rectangle2"
             android:text="+"
             android:textColor="#FBFBFB"
             android:textSize="20dp"
@@ -194,10 +198,19 @@
         <Button
             android:id="@+id/readButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="148dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="307dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="393dp"
+            android:background="@drawable/rounded_rectangle2"
+            android:fontFamily="monospace"
             android:text="Download"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

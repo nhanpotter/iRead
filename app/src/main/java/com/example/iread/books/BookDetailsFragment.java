@@ -82,7 +82,9 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
     public void onResume() {
         super.onResume();
 
-        ratingViewModel.getRating(id);
+        ratingViewModel.rating.observe(getViewLifecycleOwner(), rating -> {
+            ratingViewModel.getRating(id);
+        });
     }
 
     @Override
