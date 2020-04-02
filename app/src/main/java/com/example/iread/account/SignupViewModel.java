@@ -4,12 +4,15 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.HttpException;
 
 class SignupViewModel extends ViewModel {
     private static final String LOG_TAG = SignupViewModel.class.getSimpleName();
@@ -21,8 +24,8 @@ class SignupViewModel extends ViewModel {
     public LiveData<Boolean> progress = mutableProgress;
     private MutableLiveData<SignUpResponse> mutableSignedUp = new MutableLiveData<>();
     public LiveData<SignUpResponse> signedUp = mutableSignedUp;
-    private MutableLiveData<String> mutableError = new MutableLiveData<>();
-    public LiveData<String> error = mutableError;
+    private MutableLiveData<SignUpErrorResponse> mutableError = new MutableLiveData<>();
+    public LiveData<SignUpErrorResponse> error = mutableError;
 
     @Inject
     public SignupViewModel(AccountRepository accountRepository) {
@@ -42,8 +45,14 @@ class SignupViewModel extends ViewModel {
                 })
                 .subscribe(data -> {
                     mutableSignedUp.setValue(data);
+                    System.out.println("Hello");
                 }, error -> {
-                    mutableError.setValue("Unable to signup");
+                    ObjectMapper mapper = new ObjectMapper();
+                    SignUpErrorResponse signUpErrorResponse = mapper
+                            .readValue(((HttpException) error).response().errorBody().string(), SignUpErrorResponse.class);
+
+                    mutableError.setValue(signUpErrorResponse);
+
                 }));
     }
 
