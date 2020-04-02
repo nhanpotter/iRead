@@ -2,6 +2,7 @@ package com.example.iread.account;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,14 +56,15 @@ public class SignupFragment extends Fragment {
         confirmSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(passwordTextview.getText().toString().equals(rePasswordTextview.getText().toString())) {
-                    String username = usernameTextView.getText().toString();
-                    String email = emailTextView.getText().toString();
-                    String password = passwordTextview.getText().toString();
-                    String rePassword = rePasswordTextview.getText().toString();
+                String username = usernameTextView.getText().toString();
+                String email = emailTextView.getText().toString();
+                String password = passwordTextview.getText().toString();
+                String rePassword = rePasswordTextview.getText().toString();
+                if (TextUtils.isEmpty(email)) {
+                    emailLayout.setError("This field may not be blank.");
+                } else {
                     signupViewModel.signUp(username, email, password, rePassword);
-
-//                }
+                }
             }
         });
 
@@ -80,15 +82,23 @@ public class SignupFragment extends Fragment {
             public void onChanged(SignUpErrorResponse signUpErrorResponse) {
                 if (signUpErrorResponse.username != null) {
                     usernameLayout.setError(String.join("\n", signUpErrorResponse.username));
+                } else {
+                    usernameLayout.setError(null);
                 }
                 if (signUpErrorResponse.email != null) {
                     emailLayout.setError(String.join("\n", signUpErrorResponse.email));
+                } else {
+                    emailLayout.setError(null);
                 }
                 if (signUpErrorResponse.password != null) {
                     passwordLayout.setError(String.join("\n", signUpErrorResponse.password));
+                } else {
+                    passwordLayout.setError(null);
                 }
                 if (signUpErrorResponse.rePassword != null) {
                     rePasswordLayout.setError(String.join("\n", signUpErrorResponse.rePassword));
+                } else {
+                    rePasswordLayout.setError(null);
                 }
             }
         });

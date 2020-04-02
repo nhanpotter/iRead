@@ -48,8 +48,9 @@ class SignupViewModel extends ViewModel {
                     System.out.println("Hello");
                 }, error -> {
                     ObjectMapper mapper = new ObjectMapper();
+                    String errorBody = ((HttpException) error).response().errorBody().string();
                     SignUpErrorResponse signUpErrorResponse = mapper
-                            .readValue(((HttpException) error).response().errorBody().string(), SignUpErrorResponse.class);
+                            .readValue(errorBody, SignUpErrorResponse.class);
 
                     mutableError.setValue(signUpErrorResponse);
 
