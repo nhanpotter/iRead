@@ -9,15 +9,22 @@
         <TextView
             android:id="@+id/commentUsername"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="TextView"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/commentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
 
         <TextView
             android:id="@+id/comment"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="38dp"
             android:layout_weight="1"
             android:text="TextView" />
 
