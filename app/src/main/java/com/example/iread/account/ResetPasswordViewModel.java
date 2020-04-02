@@ -4,12 +4,19 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import retrofit2.HttpException;
 
 public class ResetPasswordViewModel extends ViewModel {
     private static final String LOG_TAG = ResetPasswordViewModel.class.getSimpleName();
@@ -19,10 +26,10 @@ public class ResetPasswordViewModel extends ViewModel {
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<Boolean> mutableProgress = new MutableLiveData<>();
     public LiveData<Boolean> progress = mutableProgress;
-    private MutableLiveData<Email> mutableResetEmail = new MutableLiveData<>();
-    public LiveData<Email> resetEmail = mutableResetEmail;
-    private MutableLiveData<String> mutableError = new MutableLiveData<>();
-    public LiveData<String> error = mutableError;
+    private MutableLiveData<Boolean> mutableSuccess = new MutableLiveData<>(false);
+    public LiveData<Boolean> success = mutableSuccess;
+    private MutableLiveData<ResetPasswordErrorResponse> mutableError = new MutableLiveData<>();
+    public LiveData<ResetPasswordErrorResponse> error = mutableError;
 
     @Inject
     public ResetPasswordViewModel(AccountRepository accountRepository) {
@@ -30,7 +37,7 @@ public class ResetPasswordViewModel extends ViewModel {
     }
 
     public void resetPassword(String email) {
-        Single<Email> resetPasswordObservable = accountRepository.resetPassword(email);
+        Completable resetPasswordObservable = accountRepository.resetPassword(email);
         compositeDisposable.add(resetPasswordObservable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -40,10 +47,22 @@ public class ResetPasswordViewModel extends ViewModel {
                 .doFinally(() -> {
                     mutableProgress.setValue(false);
                 })
-                .subscribe(data -> {
-                    mutableResetEmail.setValue(data);
+                .subscribe(() -> {
+                    mutableSuccess.setValue(true);
                 }, error -> {
-                    mutableError.setValue("Unable to reset password");
+                    ResetPasswordErrorResponse resetPasswordErrorResponse;
+                    String errorBody = ((HttpException) error).response().errorBody().string();
+                    try {
+                        ObjectMapper mapper = new ObjectMapper();
+                        resetPasswordErrorResponse = mapper
+                                .readValue(errorBody, ResetPasswordErrorResponse.class);
+                    } catch (Exception e) {
+                        List<String> list = new ArrayList<>();
+                        list.add(errorBody);
+                        resetPasswordErrorResponse = new ResetPasswordErrorResponse();
+                        resetPasswordErrorResponse.email = list;
+                    }
+                    mutableError.setValue(resetPasswordErrorResponse);
                 }));
     }
 

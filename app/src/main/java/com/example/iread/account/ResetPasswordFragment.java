@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.example.iread.MyApplication;
 import com.example.iread.R;
 import com.example.iread.utils.CustomProgressDialog;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import javax.inject.Inject;
 
@@ -38,16 +40,46 @@ public class ResetPasswordFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_resetpassword, container, false);
+        CustomProgressDialog dialog = new CustomProgressDialog(getContext());
 
-        final TextView emailTextView = rootView.findViewById(R.id.emailReset);
+        final TextView emailTextView = rootView.findViewById(R.id.email_reset);
+        TextInputLayout emailResetLayout = rootView.findViewById(R.id.email_reset_wrapper);
         Button confirmResetButton =  rootView.findViewById(R.id.confirmReset);
         confirmResetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = emailTextView.getText().toString();
                 resetPasswordViewModel.resetPassword(email);
-                Navigation.findNavController(rootView).navigate(R.id.loginFragment);
 
+
+            }
+        });
+
+        resetPasswordViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                dialog.show(aBoolean);
+            }
+        });
+
+        resetPasswordViewModel.success.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    Toast.makeText(getContext(), "A reset password link had been sent to your email", Toast.LENGTH_LONG).show();
+                    Navigation.findNavController(rootView).navigate(R.id.loginFragment);
+                }
+            }
+        });
+
+        resetPasswordViewModel.error.observe(getViewLifecycleOwner(), new Observer<ResetPasswordErrorResponse>() {
+            @Override
+            public void onChanged(ResetPasswordErrorResponse resetPasswordErrorResponse) {
+                if (resetPasswordErrorResponse.email != null) {
+                    emailResetLayout.setError(String.join("\n", resetPasswordErrorResponse.email));
+                } else {
+                    emailResetLayout.setError(null);
+                }
             }
         });
 
