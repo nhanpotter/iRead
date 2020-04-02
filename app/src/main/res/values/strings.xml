@@ -6,7 +6,7 @@
     <string name="login_header">LOGIN</string>
     <string name="password_hint">Password</string>
     <string name="sign_up_header">SIGN UP</string>
-    <string name="email_hint_field">Email</string>
+    <string name="email_hint_field">Username</string>
     <string name="google_account">Google Account</string>
     <string name="sorting_menu">Sorting</string>
     <string name="name_ascending">Name (Ascending)</string>

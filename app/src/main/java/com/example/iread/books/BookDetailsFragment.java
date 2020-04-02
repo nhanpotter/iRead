@@ -83,6 +83,20 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        ratingViewModel.getRating(id);
+        ratingViewModel.rating.observe(getViewLifecycleOwner(), new Observer<Rating>() {
+            @Override
+            public void onChanged(Rating rating) {
+                ratingBarUser.invalidate();
+                ratingBarUser.setRating(rating.rating);
+            }
+        });
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_bookdetails, container, false);
@@ -156,10 +170,12 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
                 author.setText(book.getAuthorName());
 
                 ratingViewModel.getRating(id);
+                ratingBarIndicator.invalidate();
                 ratingBarIndicator.setRating(book.overallRating);
                 ratingViewModel.rating.observe(getViewLifecycleOwner(), new Observer<Rating>() {
                     @Override
                     public void onChanged(Rating rating) {
+                        ratingBarUser.invalidate();
                         ratingBarUser.setRating(rating.rating);
                     }
                 });

@@ -57,7 +57,27 @@ public class SignupFragment extends Fragment {
                     String rePassword = rePasswordTextview.getText().toString();
                     signupViewModel.signUp(username, email, password, rePassword);
 
-                    Navigation.findNavController(rootView).navigate(R.id.loginFragment);
+                    signupViewModel.signedUp.observe(getViewLifecycleOwner(), new Observer<SignUpResponse>() {
+                        @Override
+                        public void onChanged(SignUpResponse signUpResponse) {
+                            Navigation.findNavController(rootView).navigate(R.id.loginFragment);
+                        }
+                    });
+
+                    signupViewModel.error.observe(getViewLifecycleOwner(), new Observer<String> () {
+                        @Override
+                        public void onChanged(String s) {
+                            Snackbar.make(rootView, s, Snackbar.LENGTH_LONG).show();
+                        }
+                    });
+
+                    signupViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+
+                        @Override
+                        public void onChanged(Boolean aBoolean) {
+                            dialog.show(aBoolean);
+                        }
+                    });
                 }
             }
         });

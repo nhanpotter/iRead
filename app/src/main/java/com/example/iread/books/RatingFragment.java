@@ -71,7 +71,7 @@ public class RatingFragment extends DialogFragment {
                 .setNegativeButton(R.string.cancel_comment, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        RatingFragment.this.getDialog().cancel();
+                        RatingFragment.this.dismiss();
                     }
                 });
 
