@@ -3,6 +3,7 @@ package com.example.iread.di;
 import com.example.iread.MainActivity;
 import com.example.iread.account.AccountFragment;
 import com.example.iread.account.LoginFragment;
+import com.example.iread.account.ResetPasswordFragment;
 import com.example.iread.account.SignupFragment;
 import com.example.iread.books.BookDetailsFragment;
 import com.example.iread.books.BooksFragment;
@@ -27,4 +28,5 @@ public interface ApplicationComponent {
     void inject(SignupFragment signupFragment);
     void inject(RatingFragment ratingFragment);
     void inject(HomeFragment homeFragment);
+    void inject(ResetPasswordFragment resetPasswordFragment);
 }

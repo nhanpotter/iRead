@@ -87,13 +87,6 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
         super.onResume();
 
         ratingViewModel.getRating(id);
-        ratingViewModel.rating.observe(getViewLifecycleOwner(), new Observer<Rating>() {
-            @Override
-            public void onChanged(Rating rating) {
-                ratingBarUser.invalidate();
-                ratingBarUser.setRating(rating.rating);
-            }
-        });
     }
 
     @Override

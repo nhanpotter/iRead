@@ -47,4 +47,8 @@ public class AccountRepository {
     public Single<SignUpResponse> signUp(String username, String email, String password, String rePassword) {
         return loginService.signUp(new PostUser(username, email, password, rePassword));
     }
+
+    public Single<Email> resetPassword(String email) {
+        return loginService.resetPassword(new Email(email));
+    }
 }

@@ -89,9 +89,4 @@ public class SignupFragment extends Fragment {
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
         }
-
-        private void popBackStack() {
-            int destinationId = R.id.homeFragment;
-            Navigation.findNavController(rootView).popBackStack(destinationId, false);
-        }
 }
