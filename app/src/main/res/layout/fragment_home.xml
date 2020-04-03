@@ -8,70 +8,76 @@
     android:background="#FFFFFF"
     tools:context=".home.HomeFragment">
 
-    <ImageButton
-        android:id="@+id/top10"
-        android:layout_width="153dp"
-        android:layout_height="147dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="228dp"
-        android:layout_marginRight="228dp"
-        android:layout_marginBottom="460dp"
-        android:background="#FFFFFF"
-        android:clickable="true"
-        android:foreground="@drawable/top"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imageButton6"
-        android:layout_width="153dp"
-        android:layout_height="147dp"
-        android:layout_marginStart="227dp"
-        android:layout_marginLeft="227dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginRight="31dp"
-        android:layout_marginBottom="460dp"
-        android:clickable="true"
-        android:duplicateParentState="false"
-        android:foreground="@drawable/latest"
-        android:hapticFeedbackEnabled="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/Recommendations"
         android:layout_width="167dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginEnd="214dp"
-        android:layout_marginRight="214dp"
-        android:layout_marginBottom="415dp"
-        android:background="@drawable/custom_button"
+        android:layout_height="20dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="236dp"
+        android:layout_marginEnd="205dp"
+        android:layout_marginBottom="423dp"
+        android:background="@drawable/rounded_rectangle3"
         android:fontFamily="monospace"
+        android:gravity="center"
         android:text=" Recommendations"
         android:textColor="#FA3A3737"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top10" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recommend"
         android:layout_width="362dp"
-        android:layout_height="347dp"
-        android:layout_marginBottom="84dp"
+        android:layout_height="340dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="267dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="65dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="466dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Recommendations" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/header"
+            tools:ignore='ContentDescription' />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="630dp"
+        android:fontFamily="cursive"
+        android:text="Welcome Home"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
