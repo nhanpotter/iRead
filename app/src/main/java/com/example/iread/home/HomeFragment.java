@@ -93,10 +93,9 @@ public class HomeFragment extends Fragment {
             bundle.putInt("id", recommendList.get(position).getId());
             Navigation.findNavController(view).navigate(R.id.bookDetailsFragment, bundle);
         }));
-        if (adapter == null)
-            adapter = new RecommendAdapter(this.getContext(), recommendList, listener);
-        else
-            adapter.setRecommendList(recommendList);
+
+        adapter = new RecommendAdapter(this.getContext(), recommendList, listener);
+
 
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

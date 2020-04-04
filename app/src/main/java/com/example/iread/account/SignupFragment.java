@@ -2,6 +2,7 @@ package com.example.iread.account;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,11 +51,16 @@ public class SignupFragment extends Fragment {
         confirmSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(passwordTextview.getText().toString().equals(rePasswordTextview.getText().toString())) {
-                    String username = usernameTextView.getText().toString();
-                    String email = emailTextView.getText().toString();
-                    String password = passwordTextview.getText().toString();
-                    String rePassword = rePasswordTextview.getText().toString();
+                String username = usernameTextView.getText().toString();
+                String email = emailTextView.getText().toString();
+                String password = passwordTextview.getText().toString();
+                String rePassword = rePasswordTextview.getText().toString();
+                if (TextUtils.isEmpty(email)) {
+                    emailLayout.setError("This field may not be blank.");
+                } else if (!password.equals(rePassword)){
+                    passwordLayout.setError("Password and Confirm Password not matched");
+                    rePasswordLayout.setError("Password and Confirm Password not matched");
+                } else {
                     signupViewModel.signUp(username, email, password, rePassword);
 
                     signupViewModel.signedUp.observe(getViewLifecycleOwner(), new Observer<SignUpResponse>() {

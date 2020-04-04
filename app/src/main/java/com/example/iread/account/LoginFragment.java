@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -82,6 +83,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onChanged(String s) {
                 Snackbar.make(rootView, s, Snackbar.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Please check your email account " +
+                        "for activation link if you already signed up!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -98,9 +101,9 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        if (loginViewModel.isLoggedIn()) {
-//            Navigation.findNavController(rootView).navigate(R.id.homeFragment);
-//        }
+        if (loginViewModel.isLoggedIn()) {
+            Navigation.findNavController(rootView).navigate(R.id.homeFragment);
+        }
     }
 
     private void popBackStack() {

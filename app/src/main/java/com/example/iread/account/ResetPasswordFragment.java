@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +27,7 @@ public class ResetPasswordFragment extends Fragment {
     private View rootView;
     @Inject
     ResetPasswordViewModel resetPasswordViewModel;
-
+    CustomProgressDialog dialog = new CustomProgressDialog(getContext());
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -46,8 +47,34 @@ public class ResetPasswordFragment extends Fragment {
             public void onClick(View v) {
                 String email = emailTextView.getText().toString();
                 resetPasswordViewModel.resetPassword(email);
-                Navigation.findNavController(rootView).navigate(R.id.loginFragment);
+            }
+        });
 
+        resetPasswordViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                dialog.show(aBoolean);
+            }
+        });
+
+        resetPasswordViewModel.success.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean) {
+                    Toast.makeText(getContext(), "A reset password link had been sent to your email", Toast.LENGTH_LONG).show();
+                    Navigation.findNavController(rootView).navigate(R.id.loginFragment);
+                }
+            }
+        });
+
+        resetPasswordViewModel.error.observe(getViewLifecycleOwner(), new Observer<ResetPasswordErrorResponse>() {
+            @Override
+            public void onChanged(ResetPasswordErrorResponse resetPasswordErrorResponse) {
+                if (resetPasswordErrorResponse.email != null) {
+                    emailResetLayout.setError(String.join("\n", resetPasswordErrorResponse.email));
+                } else {
+                    emailResetLayout.setError(null);
+                }
             }
         });
 
