@@ -148,6 +148,7 @@ public class BooksFragment extends Fragment {
     }
 
     private void setUpRecycleView(List<Book> booksList) {
+        Log.d("Setup alsdj;flkasjd;f", "ja;slkdfj;lasd");
         RecyclerView recyclerView = getView().findViewById(R.id.bookList);
         int numberOfColumns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), numberOfColumns));
@@ -162,10 +163,7 @@ public class BooksFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.bookDetailsFragment, bundle);
         });
 
-        if (adapter == null)
-            adapter = new BookListAdapter(this.getContext(), booksList, listener);
-        else
-            adapter.setBooksList(booksList);
+        adapter = new BookListAdapter(this.getContext(), booksList, listener);
 
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

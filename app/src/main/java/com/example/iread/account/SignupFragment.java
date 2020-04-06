@@ -62,6 +62,10 @@ public class SignupFragment extends Fragment {
                 String rePassword = rePasswordTextview.getText().toString();
                 if (TextUtils.isEmpty(email)) {
                     emailLayout.setError("This field may not be blank.");
+                } else if (!password.equals(rePassword)){
+                    passwordLayout.setError("Password and Confirm Password not matched");
+                    rePasswordLayout.setError("Password and Confirm Password not matched");
+
                 } else {
                     signupViewModel.signUp(username, email, password, rePassword);
                 }

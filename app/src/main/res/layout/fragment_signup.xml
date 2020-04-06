@@ -8,69 +8,93 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/user_wrapper"
         android:layout_width="363dp"
-        android:layout_height="99dp"
-        app:errorEnabled="true"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="191dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="366dp"
+        android:fontFamily="monospace"
+        android:selectAllOnFocus="true"
+        android:text="Username"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.169">
-
-        <com.google.android.material.textfield.TextInputEditText
+        app:layout_constraintTop_toTopOf="parent">
+    <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/username_hint_field" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="129dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="130dp"
-        android:layout_marginBottom="520dp"
-        android:fontFamily="monospace"
-        android:gravity="center"
-        android:text="WELCOME!"
-        android:textColor="#34817A"
-        android:textSize="36sp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="466dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/confirm"
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/welcome"
+            tools:ignore='ContentDescription' />
+    </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/welcome"
+            tools:ignore='ContentDescription' />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/cpw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="159dp"
+        android:layout_marginLeft="159dp"
         android:layout_marginTop="517dp"
         android:layout_marginEnd="164dp"
+        android:layout_marginRight="164dp"
         android:layout_marginBottom="38dp"
         android:fontFamily="monospace"
+        android:background="@drawable/rounded_rectangle3"
         android:text="Confirm"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_wrapper"
-        android:layout_width="362dp"
-        android:layout_height="114dp"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="268dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="290dp"
+        android:fontFamily="monospace"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:text="Email Address"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_wrapper"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
@@ -81,14 +105,22 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_wrapper"
-        android:layout_width="362dp"
-        android:layout_height="135dp"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="348dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="210dp"
+        android:fontFamily="monospace"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        android:text="Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_wrapper"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -101,13 +133,23 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/re_password_wrapper"
-        android:layout_width="360dp"
-        android:layout_height="147dp"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="428dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="130dp"
+        android:fontFamily="monospace"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        android:text="Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_wrapper"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent" >
+
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/re_password"
