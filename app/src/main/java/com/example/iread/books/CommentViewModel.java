@@ -7,12 +7,14 @@ import androidx.lifecycle.ViewModel;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
+@Singleton
 public class CommentViewModel extends ViewModel {
     private final FeedbackRepository feedbackRepository;
 
@@ -65,6 +67,8 @@ public class CommentViewModel extends ViewModel {
                 })
                 .subscribe(data -> {
                     mutableComment.setValue(data);
+                    // Update Current Comment List
+                    getCommentList(id);
                 }, error -> {
                     mutableError.setValue("Unable to get rating");
                     throw(error);

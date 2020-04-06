@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +19,7 @@ import androidx.navigation.Navigation;
 import com.example.iread.MyApplication;
 import com.example.iread.R;
 import com.example.iread.utils.CustomProgressDialog;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import javax.inject.Inject;
 
@@ -41,9 +42,13 @@ public class SignupFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_signup, container, false);
 
         final TextView usernameTextView = rootView.findViewById(R.id.user);
+        TextInputLayout usernameLayout = rootView.findViewById(R.id.user_wrapper);
         final TextView emailTextView = rootView.findViewById(R.id.email);
-        final TextView passwordTextview = rootView.findViewById(R.id.pw1);
-        final TextView rePasswordTextview = rootView.findViewById(R.id.pw2);
+        TextInputLayout emailLayout = rootView.findViewById(R.id.email_wrapper);
+        final TextView passwordTextview = rootView.findViewById(R.id.password);
+        TextInputLayout passwordLayout = rootView.findViewById(R.id.password_wrapper);
+        final TextView rePasswordTextview = rootView.findViewById(R.id.re_password);
+        TextInputLayout rePasswordLayout = rootView.findViewById(R.id.re_password_wrapper);
         Button confirmSignup = rootView.findViewById(R.id.confirm);
 
         CustomProgressDialog dialog = new CustomProgressDialog(getContext());
@@ -60,31 +65,53 @@ public class SignupFragment extends Fragment {
                 } else if (!password.equals(rePassword)){
                     passwordLayout.setError("Password and Confirm Password not matched");
                     rePasswordLayout.setError("Password and Confirm Password not matched");
+
                 } else {
                     signupViewModel.signUp(username, email, password, rePassword);
-
-                    signupViewModel.signedUp.observe(getViewLifecycleOwner(), new Observer<SignUpResponse>() {
-                        @Override
-                        public void onChanged(SignUpResponse signUpResponse) {
-                            Navigation.findNavController(rootView).navigate(R.id.loginFragment);
-                        }
-                    });
-
-                    signupViewModel.error.observe(getViewLifecycleOwner(), new Observer<String> () {
-                        @Override
-                        public void onChanged(String s) {
-                            Snackbar.make(rootView, s, Snackbar.LENGTH_LONG).show();
-                        }
-                    });
-
-                    signupViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
-
-                        @Override
-                        public void onChanged(Boolean aBoolean) {
-                            dialog.show(aBoolean);
-                        }
-                    });
                 }
+            }
+        });
+
+        signupViewModel.signedUp.observe(getViewLifecycleOwner(), new Observer<SignUpResponse>() {
+            @Override
+            public void onChanged(SignUpResponse signUpResponse) {
+                Toast.makeText(getContext(), "An activation link had been sent to your email!",
+                        Toast.LENGTH_LONG).show();
+                Navigation.findNavController(rootView).navigate(R.id.loginFragment);
+            }
+        });
+
+        signupViewModel.error.observe(getViewLifecycleOwner(), new Observer<SignUpErrorResponse>() {
+            @Override
+            public void onChanged(SignUpErrorResponse signUpErrorResponse) {
+                if (signUpErrorResponse.username != null) {
+                    usernameLayout.setError(String.join("\n", signUpErrorResponse.username));
+                } else {
+                    usernameLayout.setError(null);
+                }
+                if (signUpErrorResponse.email != null) {
+                    emailLayout.setError(String.join("\n", signUpErrorResponse.email));
+                } else {
+                    emailLayout.setError(null);
+                }
+                if (signUpErrorResponse.password != null) {
+                    passwordLayout.setError(String.join("\n", signUpErrorResponse.password));
+                } else {
+                    passwordLayout.setError(null);
+                }
+                if (signUpErrorResponse.rePassword != null) {
+                    rePasswordLayout.setError(String.join("\n", signUpErrorResponse.rePassword));
+                } else {
+                    rePasswordLayout.setError(null);
+                }
+            }
+        });
+
+        signupViewModel.progress.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                dialog.show(aBoolean);
             }
         });
 

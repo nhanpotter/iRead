@@ -38,6 +38,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class BookDetailsFragment extends Fragment implements OnHighlightListener, ReadLocatorListener, FolioReader.OnClosedListener {
+    private final String LOG_TAG = BookDetailsFragment.class.getSimpleName();
     private View rootView;
     CommentAdapter adapter;
 
@@ -76,15 +77,6 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         ((MyApplication) MyApplication.applicationContext).appComponent.inject(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        ratingViewModel.rating.observe(getViewLifecycleOwner(), rating -> {
-            ratingViewModel.getRating(id);
-        });
     }
 
     @Override
@@ -165,27 +157,12 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
                 author.setText(authorString);
                 genre.setText(genreString);
 
-                ratingViewModel.getRating(id);
                 ratingBarIndicator.invalidate();
                 ratingBarIndicator.setRating(book.overallRating);
-                ratingViewModel.rating.observe(getViewLifecycleOwner(), new Observer<Rating>() {
-                    @Override
-                    public void onChanged(Rating rating) {
-                        ratingBarUser.invalidate();
-                        ratingBarUser.setRating(rating.rating);
-                    }
-                });
 
                 description.setMovementMethod(new ScrollingMovementMethod());
                 description.setText(book.getSummary());
 
-                commentViewModel.getCommentList(id);
-                commentViewModel.commentList.observe(getViewLifecycleOwner(), new Observer<List<Comment>>() {
-                    @Override
-                    public void onChanged(List<Comment> commentList) {
-                        setupCommentRecyclerView(commentList);
-                    }
-                });
                 resourceUrl = book.getResourceUrl();
             }
         });
@@ -201,6 +178,23 @@ public class BookDetailsFragment extends Fragment implements OnHighlightListener
             @Override
             public void onChanged(Boolean aBoolean) {
                 dialog.show(aBoolean);
+            }
+        });
+
+        ratingViewModel.getRating(id);
+        ratingViewModel.rating.observe(getViewLifecycleOwner(), new Observer<Rating>() {
+            @Override
+            public void onChanged(Rating rating) {
+                ratingBarUser.invalidate();
+                ratingBarUser.setRating(rating.rating);
+            }
+        });
+
+        commentViewModel.getCommentList(id);
+        commentViewModel.commentList.observe(getViewLifecycleOwner(), new Observer<List<Comment>>() {
+            @Override
+            public void onChanged(List<Comment> commentList) {
+                setupCommentRecyclerView(commentList);
             }
         });
     }

@@ -19,6 +19,7 @@ import com.example.iread.MyApplication;
 import com.example.iread.R;
 import com.example.iread.utils.CustomProgressDialog;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import javax.inject.Inject;
 
@@ -39,8 +40,10 @@ public class ResetPasswordFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_resetpassword, container, false);
+        CustomProgressDialog dialog = new CustomProgressDialog(getContext());
 
-        final TextView emailTextView = rootView.findViewById(R.id.emailReset);
+        final TextView emailTextView = rootView.findViewById(R.id.email_reset);
+        TextInputLayout emailResetLayout = rootView.findViewById(R.id.email_reset_wrapper);
         Button confirmResetButton =  rootView.findViewById(R.id.confirmReset);
         confirmResetButton.setOnClickListener(new View.OnClickListener() {
             @Override

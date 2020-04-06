@@ -48,7 +48,7 @@ public class AccountRepository {
         return loginService.signUp(new PostUser(username, email, password, rePassword));
     }
 
-    public Single<Email> resetPassword(String email) {
+    public Completable resetPassword(String email) {
         return loginService.resetPassword(new Email(email));
     }
 }
