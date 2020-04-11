@@ -28,7 +28,6 @@ public class ResetPasswordFragment extends Fragment {
     private View rootView;
     @Inject
     ResetPasswordViewModel resetPasswordViewModel;
-    CustomProgressDialog dialog = new CustomProgressDialog(getContext());
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
