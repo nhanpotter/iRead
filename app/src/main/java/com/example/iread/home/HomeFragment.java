@@ -1,12 +1,14 @@
 package com.example.iread.home;
 
 import android.content.Context;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
@@ -14,6 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.iread.MyApplication;
 import com.example.iread.R;
@@ -48,6 +51,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
         CustomProgressDialog dialog = new CustomProgressDialog(getContext());
 
         homeViewModel.getRecommendList();
@@ -59,7 +63,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        homeViewModel.error.observe(getViewLifecycleOwner(), new Observer<String> () {
+        homeViewModel.error.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 Snackbar.make(rootView, s, Snackbar.LENGTH_LONG).show();
@@ -102,4 +106,5 @@ public class HomeFragment extends Fragment {
 
 
     }
+
 }
