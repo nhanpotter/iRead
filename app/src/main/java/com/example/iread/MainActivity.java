@@ -22,6 +22,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.iread.di.ApplicationComponent;
 import com.example.iread.home.HomeFragment;
 import com.example.iread.utils.NetworkUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -71,8 +72,20 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
             @Override
             public void onLost(@NonNull Network network) {
-                super.onLost(network);
-                finishAndRemoveTask();
+                List<Fragment> fragmentList = getSupportFragmentManager().getFragments();
+                try {
+                    Context context = MainActivity.this;
+                    for (Fragment fragment : fragmentList) {
+                        Context fragContext = fragment.getContext();
+                        if (fragContext != null) {
+                            context = fragContext;
+                            break;
+                        }
+                    }
+                    showNoInternetDialog(context);
+                } catch (Exception e) {
+                    finishAndRemoveTask();
+                }
             }
         };
 
