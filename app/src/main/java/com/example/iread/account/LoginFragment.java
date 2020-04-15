@@ -22,6 +22,7 @@ import com.example.iread.MainActivity;
 import com.example.iread.MyApplication;
 import com.example.iread.R;
 import com.example.iread.utils.CustomProgressDialog;
+import com.example.iread.utils.NetworkUtils;
 import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
@@ -101,7 +102,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (loginViewModel.isLoggedIn()) {
+        NetworkUtils networkUtils = new NetworkUtils();
+        if (networkUtils.isNetworkConnected() && loginViewModel.isLoggedIn()) {
             Navigation.findNavController(rootView).navigate(R.id.homeFragment);
         }
     }
