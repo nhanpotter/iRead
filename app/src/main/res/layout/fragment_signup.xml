@@ -48,7 +48,6 @@
             android:scaleType="fitXY"
             android:src="@drawable/welcome"
             tools:ignore='ContentDescription' />
-    </androidx.cardview.widget.CardView>
 
         <ImageView
             android:layout_width="350dp"
@@ -58,8 +57,8 @@
             tools:ignore='ContentDescription' />
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/cpw"
+    <Button
+        android:id="@+id/confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="159dp"

@@ -156,10 +156,7 @@ public class BooksFragment extends Fragment {
         BookListAdapter.ItemClickListener listener = ((view, position) -> {
             Bundle bundle = new Bundle();
             bundle.putInt("id", booksList.get(position).getId());
-//            bundle.putString("title", booksList.get(position).getBookTitle());
-//            bundle.putString("author", booksList.get(position).getAuthorName());
-//            bundle.putString("summary", booksList.get(position).getSummary());
-//            Toast.makeText(getContext(), "Book ID " + booksList.get(position).getId(), Toast.LENGTH_SHORT).show();
+
             Navigation.findNavController(view).navigate(R.id.bookDetailsFragment, bundle);
         });
 
